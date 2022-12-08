@@ -30,15 +30,21 @@ const UserSchema = new Schema({
 
 UserSchema.statics.signup = async function(email, password, phoneNbr) {
 
-    //Validating email and password
+    //Validating email and password and phone nbr
     if(!validator.isEmail(email)){
         throw Error("Credentials must be valid")
     }
-
+    
     if(!validator.isStrongPassword(password)){
         throw Error("Credentials must be valid")
     }
+    
     //todo: add validation for phone nbr
+    if(!validator.isMobilePhone(phoneNbr, ['ar-DZ'])){
+      throw Error("Credentials must be valid")
+      
+    }
+
     const emailExists = await this.findOne({email});
 
     if(emailExists) {

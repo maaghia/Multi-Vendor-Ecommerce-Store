@@ -3,6 +3,7 @@ const {
   createProduct,
   getProducts,
   getProduct,
+  getProductCategory,
   updateProduct,
   deleteProduct,
 } = require("../controllers/Product");
@@ -15,6 +16,9 @@ router.get("/", getProducts);
 
 // GET a single Product by it's ID
 router.get("/:id", getProduct);
+
+//get products by category
+router.get("/:category", getProductCategory);
 
 // POST Create a new Product
 router.post("/", createProduct);
