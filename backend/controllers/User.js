@@ -37,4 +37,43 @@ const signup = async (req, res) => {
   }
 };
 
-module.exports = { login, signup };
+//update info (phone nbr, fullName, address)
+const updateUser = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    //const user = await getAndCheckOwnership(id, req.user._id);
+
+    // Copy the values of the body received the Product object. Returns the target object.
+    const updatedUser = Object.assign(user, req.body);
+    product.updateOne()
+
+    await updatedUser.save();
+
+    res.status(200).json({
+      ok: true,
+      message: "User Info updated successfully!",
+      data: updatedUser,
+    });
+  } catch (error) {
+    return res.status(400).json(error.message);
+  }
+};
+
+// Read all Users
+const getUsers = async (req, res) => {
+  try {
+    const users = await User.find({}).sort({ createdAt: -1 });
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
+
+module.exports = { 
+  login, 
+  signup,
+  updateUser,
+  getUsers,
+};
