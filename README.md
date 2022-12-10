@@ -19,13 +19,13 @@ The user interface must have dark/light mode
 All actions and states should be implemented using Redux
 1- Users
 Authentication: User can signup and sign in using email and password with email verification  [DONE], and using Google Account [IN PROGRESS]
-Profile settings: User can update his full name, phone number, and address. All these information are mandatory to start posting products[IN PROGRESS]
+Profile settings: User can update his full name, phone number, and address[NOT YET]. All these information are mandatory to start posting products[DONE]
 User profile page: This page should be accessible by everyone and has information about the user and all his products
 
 2- Products
 The product should have a title, description, category, images, state (score out of 10, while 10 is brand new and 1 is really old) [DONE]
 User can create, delete and update a product  [DONE]
-User can fetch all products and filter by category [IN PROGRESS]
+User can fetch all products and filter by category [DONE]
 User can fetch a specific product and get all its details - /api/products/:id  [DONE]
 
 
@@ -57,5 +57,3 @@ Complete routing solution with React router
 Finalized project and Demo – 
 Post Feedback changes
 Project Demo (25 min max) -- 
-About deadlines
-
