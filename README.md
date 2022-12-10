@@ -22,12 +22,15 @@ All actions and states should be implemented using Redux
 Authentication: User can signup and sign in using email and password with email verification  [DONE], and using Google Account [IN PROGRESS]
 Profile settings: User can update his full name, phone number, and address [DONE]. All these information are mandatory to start posting products [DONE]
 User profile page: This page should be accessible by everyone and has information about the user and all his products
+Route to fetch all products created by a specific user getProductsByUser()  [DONE]
 
 2- Products
 The product should have a title, description, category, images, state (score out of 10, while 10 is brand new and 1 is really old) [DONE]
 User can create, delete and update a product  [DONE]
 User can fetch all products and filter by category [DONE]
-User can fetch a specific product and get all its details - /api/products/:id  [DONE]
+User can fetch a specific product and get all its details - /api/products/:id  [DONE] 
+
+
 
 
 
@@ -42,7 +45,6 @@ You can start with simple HTML/CSS/TailwindCSS for your views before creating yo
 Use provided Figma community designs for your UI (Feel free to keep it customized)
 You can also use any React UI library like React suite: https://rsuitejs.com/
 Keep it modular and easy to maintain
-
 # Backend – 
 Setup Express
 Create main API routes
@@ -51,7 +53,6 @@ Add MongoDB with Mongoose and define all your models
 CRUD for all models using Postman
 Implement Authentication
 Use Postman for testing the complete flow of the backend of your project
-
 # Frontend – 
 CRUD for all models
 Redux Toolkit for State management
@@ -60,4 +61,3 @@ Complete routing solution with React router
 Finalized project and Demo – 
 Post Feedback changes
 Project Demo (25 min max) -- 
-
