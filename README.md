@@ -1,7 +1,8 @@
 # Multi-Vendor-Ecommerce-Store
 CLA graduation project. A Multi Vendor Ecommerce Marketplace, which gives you the ability to post about any kind of (used or new) product you want to sell and the other users have the access to your profile (see your personal information and contact you).
 
-Project name: 
+Maria
+Project name: bazaar
 The idea is to make a multi vendor ecommerce marketplace, which gives you the ability to post about any kind of (used or new) product you want to sell and the other users have the access to your profile (see your personal information and contact you).
 References: 
 https://www.ouedkniss.com/ 
@@ -19,7 +20,7 @@ The user interface must have dark/light mode
 All actions and states should be implemented using Redux
 1- Users
 Authentication: User can signup and sign in using email and password with email verification  [DONE], and using Google Account [IN PROGRESS]
-Profile settings: User can update his full name, phone number, and address[NOT YET]. All these information are mandatory to start posting products[DONE]
+Profile settings: User can update his full name, phone number, and address [DONE]. All these information are mandatory to start posting products [DONE]
 User profile page: This page should be accessible by everyone and has information about the user and all his products
 
 2- Products
@@ -41,7 +42,8 @@ You can start with simple HTML/CSS/TailwindCSS for your views before creating yo
 Use provided Figma community designs for your UI (Feel free to keep it customized)
 You can also use any React UI library like React suite: https://rsuitejs.com/
 Keep it modular and easy to maintain
-Backend – 
+
+# Backend – 
 Setup Express
 Create main API routes
 Setup Postman for consuming your API
@@ -49,7 +51,8 @@ Add MongoDB with Mongoose and define all your models
 CRUD for all models using Postman
 Implement Authentication
 Use Postman for testing the complete flow of the backend of your project
-Frontend – 
+
+# Frontend – 
 CRUD for all models
 Redux Toolkit for State management
 Valid Frontend Auth implementation
@@ -57,3 +60,4 @@ Complete routing solution with React router
 Finalized project and Demo – 
 Post Feedback changes
 Project Demo (25 min max) -- 
+
