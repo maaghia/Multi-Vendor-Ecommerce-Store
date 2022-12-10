@@ -3,6 +3,7 @@ const {
   createProduct,
   getProducts,
   getProduct,
+  getProductsByUser,
   getProductCategory,
   updateProduct,
   deleteProduct,
@@ -21,6 +22,9 @@ router.get("/:id", getProduct);
 
 //get products by category
 router.get("/category/:category", getProductCategory);
+
+//get products by user (postedBy)
+router.get("/postedBy/:postedBy", getProductsByUser);
 
 // POST Create a new Product
 router.post("/", createProduct);

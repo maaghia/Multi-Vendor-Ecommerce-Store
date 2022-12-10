@@ -30,7 +30,7 @@ const createProduct = async (req, res) => {
       category,
       postedBy :req.user._id,
     });
-    console.log(product);
+
     res.status(201).json(product);
   } catch (error) {
     res.status(400).json({ error: true, message: error.message });
@@ -78,6 +78,21 @@ const getProductCategory = async (req, res) => {
   }
 };
 
+//fetch products by user (postedBy)
+const getProductsByUser = async (req, res) => {
+  const {postedBy} = req.params;
+  try {
+    const products = await Product.find({postedBy}).sort({ createdAt: -1 });
+    if( !products || products.length === 0){
+      return res.status(404).json({ error: "No product posted by this user yet!" });
+    }
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
+
 //update product by id
 const updateProduct = async (req, res) => {
   const { id } = req.params;
@@ -124,6 +139,7 @@ module.exports = {
   createProduct,
   getProducts,
   getProduct,
+  getProductsByUser,
   getProductCategory,
   updateProduct,
   deleteProduct,
