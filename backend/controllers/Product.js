@@ -4,15 +4,15 @@ const Product = require("../models/Product");
 //Helper: Search for Product by it's id and return it back
 const getAndCheckOwnership = async (id, user_id) => {
   try {
-    const Product = await Product.findById(id);
-    if (!Product) {
+    const product = await Product.findById(id);
+    if (!product) {
       return res.status(404).json({ message: "Product not found!" });
     }
     // Check whether this Product belongs to the signed in user
-    if (!Product.postedBy.equals(user_id)) {
+    if (!product.postedBy.equals(user_id)) {
       throw new Error("You're not authorized to do this!");
     }
-    return Product;
+    return product;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -21,13 +21,14 @@ const getAndCheckOwnership = async (id, user_id) => {
 // Create a Product
 const createProduct = async (req, res) => {
   const { title, description, category} = req.body;
-
+  
   //add to a database
   try {
     const product = await Product.create({
       title,
       description,
       category,
+      postedBy :req.user._id,
     });
     console.log(product);
     res.status(201).json(product);

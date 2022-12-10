@@ -15,6 +15,10 @@ const ProductSchema = new Schema({
     type: String,
     required: true,
   },
+  postedBy:{
+    type: Schema.ObjectId,
+    required: true,
+  },
   /* imageURL: {
     type: String,
     required: false,

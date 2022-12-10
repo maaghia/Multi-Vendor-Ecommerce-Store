@@ -9,7 +9,9 @@ const {
 } = require("../controllers/Product");
 
 const router = express.Router();
+const AuthMiddleware = require("../middlewares/Auth");
 
+router.use(AuthMiddleware);
 
 // GET all Product
 router.get("/", getProducts);
