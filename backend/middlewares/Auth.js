@@ -17,6 +17,7 @@ const AuthMiddleware = async (req, res, next) => {
   try {
     const { _id } = jwt.verify(token, process.env.JWT_SECRET);
     const user = await User.findById(_id);
+    //making the user accessible
     req.user = user;
     next();
   } catch (e) {

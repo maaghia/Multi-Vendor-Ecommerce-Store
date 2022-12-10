@@ -1,5 +1,7 @@
+const { default: mongoose } = require("mongoose");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
+
 
 const generateToken = (_id) => {
   return jwt.sign({ _id }, process.env.JWT_SECRET, { expiresIn: "7d" });
@@ -39,14 +41,12 @@ const signup = async (req, res) => {
 
 //update info (phone nbr, fullName, address)
 const updateUser = async (req, res) => {
-  const { id } = req.params;
+  const id = req.user._id;
 
   try {
-    //const user = await getAndCheckOwnership(id, req.user._id);
-
+    const user = await User.findById(id);
     // Copy the values of the body received the Product object. Returns the target object.
     const updatedUser = Object.assign(user, req.body);
-    product.updateOne()
 
     await updatedUser.save();
 
@@ -59,6 +59,22 @@ const updateUser = async (req, res) => {
     return res.status(400).json(error.message);
   }
 };
+
+//fetch users by city
+const getUserCity = async (req, res) => {
+  const {location} = req.params;
+  
+  try {
+    const users = await User.find({location}).sort({ createdAt: -1 });
+    if( !users || users.length === 0){
+      return res.status(404).json({ error: "No user found in this city!" });
+    }
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
 
 // Read all Users
 const getUsers = async (req, res) => {
@@ -75,5 +91,6 @@ module.exports = {
   login, 
   signup,
   updateUser,
+  getUserCity,
   getUsers,
 };

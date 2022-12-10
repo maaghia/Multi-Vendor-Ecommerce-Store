@@ -35,7 +35,7 @@ const createProduct = async (req, res) => {
   } catch (error) {
     res.status(400).json({ error: true, message: error.message });
   }
-};
+}; 
 
 // Read all Products
 const getProducts = async (req, res) => {

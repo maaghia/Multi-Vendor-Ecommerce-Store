@@ -1,7 +1,12 @@
 const express = require("express");
 
 const router = express.Router();
-const {login, signup, updateUser, getUsers} = require('../controllers/User')
+const { login, 
+        signup, 
+        updateUser, 
+        getUserCity,
+        getUsers    } = require('../controllers/User');
+const AuthMiddleware = require("../middlewares/Auth");
 
 // Login route
 router.post("/login", login);
@@ -10,7 +15,10 @@ router.post("/login", login);
 router.post("/signup", signup);
 
 //update phone nbr
-router.patch("/:id", updateUser);
+router.patch("/update", AuthMiddleware, updateUser);
+
+//get users by location (city)
+router.get("/city/:location", getUserCity);
 
 //get users
 router.get("/", getUsers);

@@ -20,7 +20,7 @@ router.get("/", getProducts);
 router.get("/:id", getProduct);
 
 //get products by category
-router.get("/:category", getProductCategory);
+router.get("/category/:category", getProductCategory);
 
 // POST Create a new Product
 router.post("/", createProduct);
