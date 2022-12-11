@@ -46,13 +46,13 @@ Use provided Figma community designs for your UI (Feel free to keep it customize
 You can also use any React UI library like React suite: https://rsuitejs.com/
 Keep it modular and easy to maintain
 # Backend – 
-Setup Express
-Create main API routes
-Setup Postman for consuming your API
-Add MongoDB with Mongoose and define all your models
-CRUD for all models using Postman
+Setup Express [DONE] 
+Create main API routes [DONE] 
+Setup Postman for consuming your API [DONE] 
+Add MongoDB with Mongoose and define all your models [DONE] 
+CRUD for all models using Postman [DONE] 
 Implement Authentication
-Use Postman for testing the complete flow of the backend of your project
+Use Postman for testing the complete flow of the backend of your project [DONE] 
 # Frontend – 
 CRUD for all models
 Redux Toolkit for State management
