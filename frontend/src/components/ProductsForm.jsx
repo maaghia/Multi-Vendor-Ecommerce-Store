@@ -34,7 +34,7 @@ export default function ProductsForm({setProducts}) {
     
   };
   return (
-    <div className="mb-4">
+    <div className="flex-row justify-center">
 
         <label className="label">
             <span className="label-text">Title:</span>
@@ -75,13 +75,13 @@ export default function ProductsForm({setProducts}) {
                     setPrice(e.target.value);
                     }}
                     placeholder="10" 
-                    className="input input-bordered" />
+                    className="input input-bordered w-40" />
             <span>DZD</span>
         </label>
 
-        <div className="input-group">
-        <select className="select select-bordered">
-        <option disabled selected>Pick category</option>
+        <div className="input-group mt-10 ">
+        <select className="select select-bordered w-60">
+        <option className="input input-bordered w-40" disabled selected>Pick category</option>
             <option>Clothes</option>
             <option>Dishes</option>
             <option>Toys</option>
@@ -93,7 +93,7 @@ export default function ProductsForm({setProducts}) {
         <button className="btn">Go</button>
         </div>
 
-        <button onClick={handleAddProduct} className="btn btn-outline">Add Product</button>
+        <button onClick={handleAddProduct} className="btn btn-outline mt-10">Add Product</button>
       
     </div>
   );

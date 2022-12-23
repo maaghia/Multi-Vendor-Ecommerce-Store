@@ -1,4 +1,4 @@
-const { createContext, useReducer, useEffect } = require("react");
+import { createContext, useReducer, useEffect } from "react";
 
 export const Auth = createContext();
 

@@ -15,13 +15,13 @@ export default function Products({ products, setProducts }) {
         headers: {
           "Authorization": `Bearer ${user.token}`,
         },
-      });
+      }); 
       const json = await response.json();
       setProducts(json);
     };
 
     fetchProducts();
-  }, [user]);
+  }, [user]); 
 
   return (
     <div>

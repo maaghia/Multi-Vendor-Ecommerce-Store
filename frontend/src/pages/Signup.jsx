@@ -1,18 +1,19 @@
 import React, {useState} from "react";
-import { useLogin } from "../hooks/useLogin";
+import { useSignup } from "../hooks/useSignup";
 
 export default function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const { error, isLoading, login } = useLogin();
+    const [phonenbr, setPhoneNbr] = useState("");
+    const { error, isLoading, signup } = useSignup();
 
-    const handleLogin = async () => {
-        await login(email, password);
+    const handleSignup = async () => {
+        await signup(email, password, phonenbr);
       };
 
     return(
         <div>
-        <div className="login m-10 text-xl">Login</div>
+        <div className="login m-10 text-xl">Signup</div>
         
         <div className="form-control">
         <label className="label">
@@ -34,7 +35,17 @@ export default function Login(){
         </label>
         </div>
 
-        <button onClick={handleLogin} className="btn btn-outline mt-10">Login</button>
+        <div className="form-control">
+        <label className="label">
+            <span className="label-text">Your Phone Number</span>
+        </label>
+        <label className="input-group">
+            <span>Phone Nb</span>
+            <input type="text" placeholder="05********" className="input input-bordered" />
+        </label>
+        </div>
+
+        <button onClick={handleSignup} className="btn btn-outline mt-10">Login</button>
       
 
         </div>
