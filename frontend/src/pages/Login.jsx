@@ -13,14 +13,20 @@ export default function Login(){
     return(
         <div>
         <div className="login m-10 text-xl">Login</div>
-        
+
         <div className="form-control">
         <label className="label">
             <span className="label-text">Your Email</span>
         </label>
         <label className="input-group">
             <span>Email</span>
-            <input type="text" placeholder="info@site.com" className="input input-bordered w-60" />
+            <input type="text" 
+                   value={email} 
+                   placeholder="info@site.com" 
+                   onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                   className="input input-bordered w-60" />
         </label>
         </div>
 
@@ -30,13 +36,18 @@ export default function Login(){
         </label>
         <label className="input-group">
             <span>Password</span>
-            <input type="text" placeholder="info@site.com" className="input input-bordered" />
+            <input type="text" 
+                   placeholder="info@site.com" 
+                   value={password}
+                   onChange={(e) => {
+                   setPassword(e.target.value);
+                   }}
+                   className="input input-bordered" />
         </label>
         </div>
 
         <button onClick={handleLogin} className="btn btn-outline mt-10">Login</button>
-      
-
+        {error && <p className="">{error}</p>}
         </div>
     );
 }

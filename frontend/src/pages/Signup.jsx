@@ -21,7 +21,13 @@ export default function Login(){
         </label>
         <label className="input-group">
             <span>Email</span>
-            <input type="text" placeholder="info@site.com" className="input input-bordered w-60" />
+            <input type="text"
+                   placeholder="info@site.com" 
+                   value={email}
+                   onChange={(e) => {
+                   setEmail(e.target.value);
+                   }}
+                   className="input input-bordered w-60" />
         </label>
         </div>
 
@@ -31,7 +37,13 @@ export default function Login(){
         </label>
         <label className="input-group">
             <span>Password</span>
-            <input type="text" placeholder="info@site.com" className="input input-bordered" />
+            <input type="password"
+                   placeholder= "********" 
+                    value={password}
+                    onChange={(e) => {
+                    setPassword(e.target.value);
+                    }}
+                   className="input input-bordered" />
         </label>
         </div>
 
@@ -41,12 +53,19 @@ export default function Login(){
         </label>
         <label className="input-group">
             <span>Phone Nb</span>
-            <input type="text" placeholder="05********" className="input input-bordered" />
+            <input type="text" 
+                   placeholder="05********" 
+                   value={phonenbr}
+                   onChange={(e) => {
+                    setPassword(e.target.value);
+                   }}
+                   className="input input-bordered" />
         </label>
         </div>
 
-        <button onClick={handleSignup} className="btn btn-outline mt-10">Login</button>
-      
+        <button onClick={handleSignup} className="btn btn-outline mt-10">Signup</button>
+        
+        {error && ( <div><p>{error}</p></div> )}
 
         </div>
     );
