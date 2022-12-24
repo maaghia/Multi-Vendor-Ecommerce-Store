@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect} from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import './App.css';
 import Navbar from './components/Navbar';
@@ -9,35 +9,34 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { Auth } from "./contexts/Auth";
 import ProductsForm from "./components/ProductsForm";
+import { useFetchData } from "./hooks/useFetchData";
 
 function App() {
   const [products, setProducts] = useState([]);
 
   const { user } = useContext(Auth);
+
+  useFetchData("/api/products");
+  
+  console.log(  useFetchData("/api/products"));
+
   return (
     
     <BrowserRouter>
     <Navbar/>
     <main className="h-screen flex justify-center">
       <Routes>
-      <Route
-            path="/products"
-            element={
-              user ? (
-                <Products setProducts={setProducts} products={products} />
-              ) : (
-                <Navigate to="/login" />
-              )
-            }
-          />
+        <Route path="/products" 
+               element={<Products setProducts={setProducts} products={products} />}/>
+        
         <Route 
             path="/addproduct" 
             element={
-            //user ? (
+            user ? (
               <ProductsForm /> 
-           /*  ) : (
+              ) : (
               <Navigate to="/login" />
-            )*/
+              )
             } 
         />
             

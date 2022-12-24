@@ -81,7 +81,7 @@ export default function ProductsForm({setProducts}) {
 
         <div className="input-group mt-10 ">
         <select className="select select-bordered w-60">
-        <option className="input input-bordered w-40" disabled selected>Pick category</option>
+        <option className="input input-bordered w-40" defaultValue="category">Pick category</option>
             <option>Clothes</option>
             <option>Dishes</option>
             <option>Toys</option>
