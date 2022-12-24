@@ -11,7 +11,7 @@ export const useFetchData = (url) => {
         try {
           const resp = await axios.get(url);
           const data = await resp?.data;
-  
+          console.log(data)
           setApiData(data);
           setIsLoading(false);
         } catch (error) {
