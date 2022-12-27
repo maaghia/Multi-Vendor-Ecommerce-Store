@@ -12,7 +12,7 @@ const {
 const router = express.Router();
 const AuthMiddleware = require("../middlewares/Auth");
 
-router.use(AuthMiddleware);
+//router.use(AuthMiddleware);
 
 // GET all Product
 router.get("/", getProducts);
