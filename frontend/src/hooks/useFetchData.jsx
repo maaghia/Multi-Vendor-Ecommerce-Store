@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 
 export const useFetchData = (url) => {
     const [isLoading, setIsLoading] = useState(false);

@@ -10,6 +10,7 @@ import Signup from "./pages/Signup";
 import { Auth } from "./contexts/Auth";
 import ProductsForm from "./components/ProductsForm";
 import { useFetchData } from "./hooks/useFetchData";
+import UserProfile from "./pages/UserProfile";
 
 function App() {
   const [products, setProducts] = useState([]);
@@ -18,7 +19,7 @@ function App() {
 
   useFetchData("/api/products");
   
-  console.log(  useFetchData("/api/products"));
+  console.log(useFetchData("/api/products"));
 
   return (
     
@@ -39,7 +40,8 @@ function App() {
               )
             } 
         />
-            
+        
+        <Route path="/userProfile" element={<UserProfile />} />
         <Route path="/:id" element={<Product />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup/>} />
