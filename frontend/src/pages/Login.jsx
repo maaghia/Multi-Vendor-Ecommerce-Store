@@ -37,7 +37,7 @@ export default function Login(){
         <label className="input-group">
             <span>Password</span>
             <input type="text" 
-                   placeholder="info@site.com" 
+                   placeholder="********" 
                    value={password}
                    onChange={(e) => {
                    setPassword(e.target.value);

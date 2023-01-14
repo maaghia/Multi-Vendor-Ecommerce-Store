@@ -1,24 +1,26 @@
 import { useContext, useState, useEffect } from "react";
 
-export const useFetchData = (url) => {
+const useFetchData = (url) => {
     const [isLoading, setIsLoading] = useState(false);
     const [apiData, setApiData] = useState(null);
     const [serverError, setServerError] = useState(null);
   
+    const fetchData = async () => {
+      try {
+        const resp = await axios.get(url);
+        const data = await resp?.data;
+        console.log(data);
+        
+        setApiData(data);
+        setIsLoading(false);
+      } catch (error) {
+        setServerError(error);
+        setIsLoading(false);
+      }
+    };
+
     useEffect(() => {
       setIsLoading(true);
-      const fetchData = async () => {
-        try {
-          const resp = await axios.get(url);
-          const data = await resp?.data;
-          console.log(data)
-          setApiData(data);
-          setIsLoading(false);
-        } catch (error) {
-          setServerError(error);
-          setIsLoading(false);
-        }
-      };
   
       fetchData();
     }, [url]);  
@@ -26,4 +28,4 @@ export const useFetchData = (url) => {
     return { isLoading, apiData, serverError };
   };
 
-  
+  export default useFetchData

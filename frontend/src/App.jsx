@@ -9,17 +9,12 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { Auth } from "./contexts/Auth";
 import ProductsForm from "./components/ProductsForm";
-import { useFetchData } from "./hooks/useFetchData";
+
 import UserProfile from "./pages/UserProfile";
 
 function App() {
-  const [products, setProducts] = useState([]);
 
   const { user } = useContext(Auth);
-
-  useFetchData("/api/products");
-  
-  console.log(useFetchData("/api/products"));
 
   return (
     
@@ -28,7 +23,7 @@ function App() {
     <main className="h-screen flex justify-center">
       <Routes>
         <Route path="/products" 
-               element={<Products setProducts={setProducts} products={products} />}/>
+               element={<Products/>}/>
         
         <Route 
             path="/addproduct" 
