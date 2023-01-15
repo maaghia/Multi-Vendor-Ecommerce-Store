@@ -2,23 +2,14 @@ import React from "react";
 
 export default function Product({product}){
     return(
-<<<<<<< HEAD
         <div className="card w-60 bg-base-100 shadow-xl p-0">
-=======
-        <div className="card w-60 bg-base-100 shadow-xl">
->>>>>>> origin/main
         <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
         <div className="card-body ">
             <h4 className="card-title text-left">
             {product.title}                                       {/* for the product title */}
             <div className="badge badge-secondary">{product.category}</div>  {/* for the seller */}
-<<<<<<< HEAD
             </h4>
             <p className="text-left">{product.description}</p> {/* for the discription  */}
-=======
-            </h2>
-            <p>{product.discription}</p> {/* for the discription  */}
->>>>>>> origin/main
             <div className="card-actions justify-end">
             <div className="badge badge-outline">{product.price} 900 DZD</div>  {/* for the price */}
             <div className="buy"> 
