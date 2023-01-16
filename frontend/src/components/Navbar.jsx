@@ -1,6 +1,7 @@
 import React, {useContext} from "react";
 import { Auth } from "../contexts/Auth";
 import { useLogout } from "../hooks/useLogout";
+import { NavLink } from "react-router-dom";
 
 export default function Navbar(){
     const { user } = useContext(Auth);
@@ -33,7 +34,8 @@ export default function Navbar(){
                     </div>
                     </div>
                 </div>
-                </div> */}
+                </div> 
+                THIS IS THE SHOPPING CHAR LOGO*/} 
 
                 {user && (
                 <div className="dropdown dropdown-end">
@@ -51,12 +53,10 @@ export default function Navbar(){
                 )}
                 {!user && (
                     <div className="btn-group">
-                    <button className="btn btn-active">Signup</button>
-                    <button className="btn">Login</button>
+                        <NavLink className="btn btn-active" to="/login">Login</NavLink>
+                        <NavLink className="btn" to="/signup">Signup</NavLink>
                     </div>
-                )
-
-                }
+                )}
                 
             </div>
             </div>
