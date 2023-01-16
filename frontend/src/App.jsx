@@ -9,6 +9,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { Auth } from "./contexts/Auth";
 import ProductsForm from "./components/ProductsForm";
+import MyProfile from "./pages/MyProfile"
 
 import UserProfile from "./pages/UserProfile";
 
@@ -37,6 +38,7 @@ function App() {
         />
         
         <Route path="/userProfile" element={<UserProfile />} />
+        <Route path="/myProfile" element={<MyProfile />} />
         <Route path="/:id" element={<Product />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup/>} />
