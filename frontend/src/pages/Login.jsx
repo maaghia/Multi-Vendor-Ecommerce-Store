@@ -11,7 +11,7 @@ export default function Login(){
       };
 
     return(
-        <div>
+        <form>
         <div className="login m-10 text-xl">Login</div>
 
         <div className="form-control">
@@ -36,7 +36,7 @@ export default function Login(){
         </label>
         <label className="input-group">
             <span>Password</span>
-            <input type="text" 
+            <input type="password" 
                    placeholder="********" 
                    value={password}
                    onChange={(e) => {
@@ -46,8 +46,14 @@ export default function Login(){
         </label>
         </div>
 
-        <button onClick={handleLogin} className="btn btn-outline mt-10">Login</button>
+        <button 
+            onClick={handleLogin} 
+            disabled={isLoading}
+            className="btn btn-outline mt-10"
+        >
+            Login
+        </button>
         {error && <p className="">{error}</p>}
-        </div>
+        </form>
     );
 }

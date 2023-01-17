@@ -12,7 +12,7 @@ export default function Login(){
       };
 
     return(
-        <div>
+        <form>
         <div className="login m-10 text-xl">Signup</div>
         
         <div className="form-control">
@@ -57,7 +57,7 @@ export default function Login(){
                    placeholder="05********" 
                    value={phonenbr}
                    onChange={(e) => {
-                    setPassword(e.target.value);
+                    setPhoneNbr(e.target.value);
                    }}
                    className="input input-bordered" />
         </label>
@@ -67,6 +67,6 @@ export default function Login(){
         
         {error && ( <div><p>{error}</p></div> )}
 
-        </div>
+        </form>
     );
 }
