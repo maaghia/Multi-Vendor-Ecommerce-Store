@@ -10,8 +10,8 @@ import Signup from "./pages/Signup";
 import { Auth } from "./contexts/Auth";
 import ProductsForm from "./components/ProductsForm";
 import MyProfile from "./pages/MyProfile"
-
 import UserProfile from "./pages/UserProfile";
+import EditProfile from "./pages/EditProfile";
 
 function App() {
 
@@ -42,6 +42,8 @@ function App() {
         <Route path="/:id" element={<Product />} />
         <Route path="/login" element={<Login/>} />
         <Route path="/signup" element={<Signup/>} />
+        <Route path="/editProfile" element={<EditProfile/>} />
+
       </Routes>
     </main>
     <Footer/>
