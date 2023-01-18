@@ -33,6 +33,22 @@ export default function Login(){
 
         <div className="form-control">
         <label className="label">
+            <span className="label-text">Your Full Name</span>
+        </label>
+        <label className="input-group">
+            <span>Name</span>
+            <input type="text"
+                   placeholder="Full Name" 
+                   value={fullName}
+                   onChange={(e) => {
+                   setEmail(e.target.value);
+                   }}
+                   className="input input-bordered w-60" />
+        </label>
+        </div>
+
+        <div className="form-control">
+        <label className="label">
             <span className="label-text">Your Password</span>
         </label>
         <label className="input-group">

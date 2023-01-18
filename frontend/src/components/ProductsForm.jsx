@@ -1,5 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Auth } from "../contexts/Auth";
+import Demo from "../pages/Demo"
+import { geolocated } from "react-geolocated";
 
 export default function ProductsForm({setProducts}) {
   const [title, setTitle] = useState("");
@@ -33,6 +35,14 @@ export default function ProductsForm({setProducts}) {
     setProducts(prevState => [...prevState, json])
     
   };
+
+  const [checked, setChecked] = useState(false);
+  const handleChange = () => { 
+    setChecked(!checked); 
+    console.log('The checkbox was toggled'); 
+    
+  };
+
   return (
     <div className="flex-row justify-center">
 
@@ -65,7 +75,7 @@ export default function ProductsForm({setProducts}) {
         </label>
 
         <label className="label">
-            <span className="label-text">Enter amount</span>
+            <span className="label-text">Enter amount:</span>
         </label>
         <label className="input-group">
             <span>Price</span>
@@ -79,10 +89,13 @@ export default function ProductsForm({setProducts}) {
             <span>DZD</span>
         </label>
 
-        <div className="input-group mt-10 ">
-        <select className="select select-bordered w-60">
-        <option className="input input-bordered w-40" defaultValue="category">Pick category</option>
-            <option>Clothes</option>
+        <div className="form-control w-full max-w-xs">
+        <label className="label">
+          <span className="label-text">Pick Category:</span>
+        </label>
+        <select className="select select-bordered">
+          <option disabled></option>
+          <option>Clothes</option>
             <option>Dishes</option>
             <option>Toys</option>
             <option>Electronics</option>
@@ -90,8 +103,14 @@ export default function ProductsForm({setProducts}) {
             <option>Home Furniture</option>
             <option>Sport Materials</option>
         </select>
-        <button className="btn">Go</button>
-        </div>
+      </div>
+        
+        <div className="form-control">
+        <label className="label cursor-pointer mt-5">
+          <input type="checkbox" onChange={handleChange} className="checkbox checkbox-primary" />
+          <span className="label-text">Allow us to get your Location (mandatory)</span>
+        </label>
+      </div>
 
         <button onClick={handleAddProduct} className="btn btn-outline mt-10">Add Product</button>
       
