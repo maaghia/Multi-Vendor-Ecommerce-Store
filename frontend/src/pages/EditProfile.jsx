@@ -1,17 +1,23 @@
-import React, {useContext, useState} from "react";
+import React, {useContext, useState, useEffect} from "react";
 import UserProfile from "./MyProfile";
 import { Auth } from "../contexts/Auth";
 
 export default function EditProfile(){
     const { user } = useContext(Auth);
-    
+    console.log(user)
     const [fullname, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [phonenbr, setPhoneNbr] = useState("");
     const [location, setLocation] = useState("");
     
         /* TODO: add condition on user and init user info  */
-
+       /*  useEffect(() => {
+            const user = JSON.parse(localStorage.getItem("user"));
+        
+            if (user) {
+              dispatch({ type: "LOGIN", payload: user });
+            }
+        }, []); */
     return(
         <form className="mt-10">
             <div>
@@ -30,7 +36,7 @@ export default function EditProfile(){
                 <span>Name</span>
                 <input type="text" 
                     value={fullname} 
-                    placeholder="" /* {user.fullname} */
+                    placeholder= {user?.fullName} 
                     onChange={(e) => {
                         setFullName(e.target.value);
                     }}
@@ -46,7 +52,7 @@ export default function EditProfile(){
                 <span>E-mail</span>
                 <input type="text" 
                     value={email} 
-                    placeholder="" /* {user.email} */
+                    placeholder= {user?.email}
                     onChange={(e) => {
                         setEmail(e.target.value);
                     }}
@@ -61,7 +67,7 @@ export default function EditProfile(){
             <label className="input-group">
                 <span>Phone Nb</span>
                 <input type="text" 
-                    placeholder="" /* {user.phoneNbr} */ 
+                    placeholder={user?.phoneNbr} 
                     value={phonenbr}
                     onChange={(e) => {
                         setPhoneNbr(e.target.value);
