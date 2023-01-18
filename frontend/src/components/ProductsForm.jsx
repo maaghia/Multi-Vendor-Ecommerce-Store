@@ -2,7 +2,10 @@ import React, { useContext, useState } from "react";
 import { Auth } from "../contexts/Auth";
 import Demo from "../pages/Demo"
 import { geolocated } from "react-geolocated";
+<<<<<<< HEAD
 import { Auth } from "../contexts/Auth";
+=======
+>>>>>>> fdfeb3b7e0bdc9f4c2e96d2cdc2828d26ba06990
 
 export default function ProductsForm({setProducts}) {
   const { user } = useContext(Auth);
@@ -38,6 +41,7 @@ export default function ProductsForm({setProducts}) {
     
   };
 
+<<<<<<< HEAD
   //LOCATION
   const [checked, setChecked] = useState(false);
 
@@ -46,10 +50,15 @@ export default function ProductsForm({setProducts}) {
       console.log('user not found!')
       return
     }
+=======
+  const [checked, setChecked] = useState(false);
+  const handleChange = () => { 
+>>>>>>> fdfeb3b7e0bdc9f4c2e96d2cdc2828d26ba06990
     setChecked(!checked); 
     console.log('The checkbox was toggled'); 
     
   };
+<<<<<<< HEAD
   
   useEffect(() => {
     getLocation(); //idk how to get location from demo
@@ -58,6 +67,8 @@ export default function ProductsForm({setProducts}) {
   const getLocation = async () => {
     setLocation(/* idk what variable to put here */);
   };
+=======
+>>>>>>> fdfeb3b7e0bdc9f4c2e96d2cdc2828d26ba06990
 
   return (
     <div className="flex-row justify-center">
