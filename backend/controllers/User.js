@@ -16,7 +16,7 @@ const login = async (req, res) => {
 
     //Create the JWT
     const token = generateToken(user._id);
-    res.status(200).json({email: user.email, token});
+    res.status(200).json({fullName:user.fullName, phoneNbr: user.phoneNbr, email: user.email, token});
   } catch (error) {
     res.status(400).json(error.message);
   }
