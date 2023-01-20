@@ -1,8 +1,7 @@
 import React, { useContext, useState } from "react";
 import { Auth } from "../contexts/Auth";
 import Demo from "../pages/Demo"
-import { geolocated } from "react-geolocated";
-import { Auth } from "../contexts/Auth";
+import { usePosition } from 'react-geolocated';
 
 export default function ProductsForm({setProducts}) {
   const { user } = useContext(Auth);
@@ -39,25 +38,17 @@ export default function ProductsForm({setProducts}) {
   };
 
   //LOCATION
-  const [checked, setChecked] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
+  //const { coords } = usePosition();
 
-  const handleChange = () => { 
-    if (!user) {
-      console.log('user not found!')
-      return
+  const handleCheckboxChange = (event) => {
+    setIsChecked(event.target.checked);
+    if (event.target.checked) {
+      console.log(coords);
     }
-    setChecked(!checked); 
-    console.log('The checkbox was toggled'); 
-    
   };
-  
-  useEffect(() => {
-    getLocation(); //idk how to get location from demo
-  }, []);
 
-  const getLocation = async () => {
-    setLocation(/* idk what variable to put here */);
-  };
+  
 
   return (
     <div className="flex-row justify-center">
@@ -123,7 +114,7 @@ export default function ProductsForm({setProducts}) {
         
         <div className="form-control">
         <label className="label cursor-pointer mt-5">
-          <input type="checkbox" onChange={handleChange} className="checkbox checkbox-primary" />
+          <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} className="checkbox checkbox-primary" />
           <span className="label-text">Allow us to get your Location (mandatory)</span>
         </label>
       </div>

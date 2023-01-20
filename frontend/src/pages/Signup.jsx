@@ -5,6 +5,7 @@ export default function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [phonenbr, setPhoneNbr] = useState("");
+    const [fullName, setFullName] = useState("");
     const { error, isLoading, signup } = useSignup();
 
     const handleSignup = async () => {
@@ -41,7 +42,7 @@ export default function Login(){
                    placeholder="Full Name" 
                    value={fullName}
                    onChange={(e) => {
-                   setEmail(e.target.value);
+                   setFullName(e.target.value);
                    }}
                    className="input input-bordered w-60" />
         </label>

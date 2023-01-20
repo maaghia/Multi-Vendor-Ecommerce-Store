@@ -13,6 +13,7 @@ import MyProfile from "./pages/MyProfile"
 import UserProfile from "./pages/UserProfile";
 import EditProfile from "./pages/EditProfile";
 import Demo from "./pages/Demo";
+import ProfileNFalert from "./components/profileNFalert";
 
 function App() {
 
@@ -26,7 +27,7 @@ function App() {
     <Navbar/>
     <main className="h-screen flex justify-center">
        <Routes>
-       {/* <Route path="/products" 
+        <Route path="/products" 
                element={<Products/>}/>
         
         <Route 
@@ -39,14 +40,22 @@ function App() {
               )
             } 
         />
-         */}
+         
          <Route path="/addproduct" element={<ProductsForm/>}/>
         <Route path="/userProfile" element={<UserProfile />} />
         <Route path="/myProfile" element={<MyProfile />} />
         <Route path="/:id" element={<Product />} />
-        <Route path="/login" element={<Login/>} />
+        <Route path="/login" element={
+            user ? (
+              <MyProfile /> 
+              ) : (
+              <Navigate to="/login" />
+              )
+        } />
         <Route path="/signup" element={<Signup/>} />
         <Route path="/editProfile" element={<EditProfile/>} />
+        <Route path="/profileNFalert" element={<ProfileNFalert/>} />
+        
 
       </Routes>
     </main>
