@@ -45,7 +45,7 @@ export default function Navbar(){
                     </div>
                 </label>
                 <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                    <li><a className="justify-between">My Profile</a></li>
+                    <li><NavLink to="/myProfile" className="justify-between">My Profile</NavLink></li>
                     <li><NavLink to="/addproduct">Add Product</NavLink></li>
                     <li><button onClick={handleLogout}>Logout</button></li>
                 </ul>

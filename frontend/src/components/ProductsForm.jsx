@@ -37,7 +37,7 @@ export default function ProductsForm({setProducts}) {
     
   };
 
-  //LOCATION
+  /* //LOCATION
   const [isChecked, setIsChecked] = useState(false);
   //const { coords } = usePosition();
 
@@ -46,7 +46,7 @@ export default function ProductsForm({setProducts}) {
     if (event.target.checked) {
       console.log(coords);
     }
-  };
+  }; */
 
   
 
@@ -101,23 +101,82 @@ export default function ProductsForm({setProducts}) {
           <span className="label-text">Pick Category:</span>
         </label>
         <select className="select select-bordered">
-          <option disabled></option>
-          <option>Clothes</option>
-            <option>Dishes</option>
-            <option>Toys</option>
-            <option>Electronics</option>
-            <option>Cosmetics</option>
-            <option>Home Furniture</option>
-            <option>Sport Materials</option>
+            <option value="">Category</option>
+            <option value="Clothes">Clothes</option>
+            <option value="Dishes">Dishes</option>
+            <option value="Toys">Toys</option>
+            <option value="Electronics">Electronics</option>
+            <option value="Cosmetics">Cosmetics</option>
+            <option value="Home Furniture">Home Furniture</option>
+            <option value="Sport Materials">Sport Materials</option>
         </select>
       </div>
+
+      
+      <div className="form-control w-full max-w-xs">
+        <label className="label">
+          <span className="label-text">Pick City:</span>
+        </label>
+        <select className="select select-bordered">
+          <option value="">City</option>
+          <option value="Adrar">Adrar</option>
+          <option value="Chlef">Chlef</option>
+          <option value="Laghouat">Laghouat</option>
+          <option value="Oum el-Bouaghi">Oum el-Bouaghi</option>
+          <option value="Batna">Batna</option>
+          <option value="Béjaïa">Béjaïa</option>
+          <option value="Biskra">Biskra</option>
+          <option value="Béchar">Béchar</option>
+          <option value="Blida">Blida</option>
+          <option value="Bouira">Bouira</option>
+          <option value="Tamanrasset">Tamanrasset</option>
+          <option value="Tébessa">Tébessa</option>
+          <option value="Tlemcen">Tlemcen</option>
+          <option value="Tiaret">Tiaret</option>
+          <option value="Tizi Ouzou">Tizi Ouzou</option>
+          <option value="Algiers">Algiers</option>
+          <option value="Djelfa">Djelfa</option>
+          <option value="Jijel">Jijel</option>
+          <option value="Setif">Setif</option>
+          <option value="Saïda">Saïda</option>
+          <option value="Skikda">Skikda</option>
+          <option value="Sidi Bel Abbes">Sidi Bel Abbes</option>
+          <option value="Annaba">Annaba</option>
+          <option value="Guelma">Guelma</option>
+          <option value="Constantine">Constantine</option>
+          <option value="Médéa">Médéa</option>
+          <option value="Mostaganem">Mostaganem</option>
+          <option value="M'Sila">M'Sila</option>
+          <option value="Muaskar">Muaskar</option>
+          <option value="Oran">Oran</option>
+          <option value="El Bayadh">El Bayadh</option>
+          <option value="Illizi">Illizi</option>
+          <option value="Bordj Bou Arreridj">Bordj Bou Arreridj</option>
+          <option value="Boumerdes">Boumerdes</option>
+          <option value="El Tarf">El Tarf</option>
+          <option value="Tindouf">Tindouf</option>
+          <option value="Tissemsilt">Tissemsilt</option>
+          <option value="El Oued">El Oued</option>
+          <option value="Khenchela">Khenchela</option>
+          <option value="Souk Ahras">Souk Ahras</option>
+          <option value="Tipaza">Tipaza</option>
+          <option value="Mila">Mila</option>
+          <option value="Ain Defla">Ain Defla</option>
+          <option value="Naama">Naama</option>
+          <option value="Aïn Témouchent">Aïn Témouchent</option>
+          <option value="Ghardaia">Ghardaia</option>
+          <option value="Relizane">Relizane</option>
+          <option value="Tahoua">Tahoua</option>
+
+          </select>
+      </div>
         
-        <div className="form-control">
+       {/*  <div className="form-control">
         <label className="label cursor-pointer mt-5">
           <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} className="checkbox checkbox-primary" />
           <span className="label-text">Allow us to get your Location (mandatory)</span>
         </label>
-      </div>
+      </div> */}
 
         <button onClick={handleAddProduct} className="btn btn-outline mt-10">Add Product</button>
       
