@@ -45,13 +45,7 @@ function App() {
         <Route path="/userProfile" element={<UserProfile />} />
         <Route path="/myProfile" element={<MyProfile />} />
         <Route path="/:id" element={<Product />} />
-        <Route path="/login" element={
-            user ? (
-              <MyProfile /> 
-              ) : (
-              <Navigate to="/login" />
-              )
-        } />
+        <Route path="/login" element={<Login />}/>
         <Route path="/signup" element={<Signup/>} />
         <Route path="/editProfile" element={<EditProfile/>} />
         <Route path="/profileNFalert" element={<ProfileNFalert/>} />
