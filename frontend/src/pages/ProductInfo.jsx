@@ -39,7 +39,9 @@ export default function ProductInfo(){
                 
 
                 <div className="card-body">
-                    <h2 className="card-title">{product.title} </h2>
+                    <h2 className="card-title">{product.title} 
+                    <div className="badge badge-secondary">{product.category}</div>
+                    </h2>
 
                     <h4 className="flex text-left">
                         
