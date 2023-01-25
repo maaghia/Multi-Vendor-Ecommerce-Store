@@ -16,7 +16,7 @@ import ProfileNFalert from "./components/profileNFalert";
 import MyProducts from "./pages/MyProducts";
 
 function App() {
-
+  
   const { user } = useContext(Auth);
    return (
     
@@ -57,7 +57,7 @@ function App() {
             path="/signup"
             element={
               !user ? (
-                <Login/>
+                <Signup/>
               ) : (
                 <Navigate to="/" />
               )
