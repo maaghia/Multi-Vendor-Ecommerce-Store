@@ -1,34 +1,36 @@
 import React, { useContext, useState } from "react";
 import { Auth } from "../contexts/Auth";
-import Demo from "../pages/Demo"
-import { usePosition } from 'react-geolocated';
 
 export default function ProductsForm({setProducts}) {
   const { user } = useContext(Auth);
 
   const [title, setTitle] = useState("");
-  const [postedBy, setAuthor] = useState("");
+  const [postedBy, setAuthor] = useState(user.id);
   const [price, setPrice] = useState(0);
+  const [category, setCategory] = useState(0);
   const [location, setLocation] = useState("");
 
-  console.log(title);
+  console.log(category);
 
-  const handleAddProduct = async () => {
+  const handleAddProduct = async (event) => {
+    event.preventDefault();
     if (!user) {
       console.log('user not found!')
       return;
     }
-    const product = { title, price, postedBy};
+    const product = { title, postedBy, price,category, location};
 
-    const response = await fetch("/api/products", {
+    const response = await fetch("http://localhost:3000/api/products", {
       method: "POST",
+      mode: 'cors',
       headers: {
         "Content-Type": "application/json",
         "Authorization": `Bearer ${user.token}`
       },
       body: JSON.stringify(product),
+      
     });
-
+    
     const json = await response.json()
 
     console.log(json)
@@ -55,20 +57,6 @@ export default function ProductsForm({setProducts}) {
                     className="input input-bordered" />
         </label>
 
-        {/* <label className="label">
-            <span className="label-text">Seller:</span>
-        </label>
-        <label className="input-group">
-            <span>Seller</span>
-            <input type="text" 
-                   value={postedBy}
-                   onChange={(e) => {
-                     setAuthor(e.target.value);
-                   }}
-                   placeholder={user.fullName} 
-                   className="input input-bordered" />
-        </label> */}
-
         <label className="label">
             <span className="label-text">Enter amount:</span>
         </label>
@@ -88,7 +76,11 @@ export default function ProductsForm({setProducts}) {
         <label className="label">
           <span className="label-text">Pick Category:</span>
         </label>
-        <select className="select select-bordered">
+        <select value={category} 
+                onSelect={(e) => {
+                  setCategory(e.target.value);
+                  }}
+        className="select select-bordered">
             <option value="">Category</option>
             <option value="Clothes">Clothes</option>
             <option value="Dishes">Dishes</option>
@@ -97,6 +89,7 @@ export default function ProductsForm({setProducts}) {
             <option value="Cosmetics">Cosmetics</option>
             <option value="Home Furniture">Home Furniture</option>
             <option value="Sport Materials">Sport Materials</option>
+            <option value="Sea Materials">Sea Materials</option>
         </select>
       </div>
 
@@ -158,13 +151,6 @@ export default function ProductsForm({setProducts}) {
 
           </select>
       </div>
-        
-       {/*  <div className="form-control">
-        <label className="label cursor-pointer mt-5">
-          <input type="checkbox" checked={isChecked} onChange={handleCheckboxChange} className="checkbox checkbox-primary" />
-          <span className="label-text">Allow us to get your Location (mandatory)</span>
-        </label>
-      </div> */}
 
         <button onClick={handleAddProduct} className="btn btn-outline mt-10">Add Product</button>
       
