@@ -48,6 +48,7 @@ export default function Navbar(){
                     <li><NavLink to="/myProfile" className="justify-between">My Profile</NavLink></li>
                     <li><NavLink to="/addproduct">Add Product</NavLink></li>
                     <li><button onClick={handleLogout}>Logout</button></li>
+                    <li><NavLink to="">Home</NavLink></li>
                 </ul>
                 </div>
                 )}

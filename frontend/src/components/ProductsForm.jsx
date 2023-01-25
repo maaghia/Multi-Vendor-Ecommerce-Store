@@ -16,7 +16,7 @@ export default function ProductsForm({setProducts}) {
   const handleAddProduct = async () => {
     if (!user) {
       console.log('user not found!')
-      return
+      return;
     }
     const product = { title, price, postedBy};
 
@@ -36,18 +36,6 @@ export default function ProductsForm({setProducts}) {
     setProducts(prevState => [...prevState, json])
     
   };
-
-  /* //LOCATION
-  const [isChecked, setIsChecked] = useState(false);
-  //const { coords } = usePosition();
-
-  const handleCheckboxChange = (event) => {
-    setIsChecked(event.target.checked);
-    if (event.target.checked) {
-      console.log(coords);
-    }
-  }; */
-
   
 
   return (
@@ -67,7 +55,7 @@ export default function ProductsForm({setProducts}) {
                     className="input input-bordered" />
         </label>
 
-        <label className="label">
+        {/* <label className="label">
             <span className="label-text">Seller:</span>
         </label>
         <label className="input-group">
@@ -77,9 +65,9 @@ export default function ProductsForm({setProducts}) {
                    onChange={(e) => {
                      setAuthor(e.target.value);
                    }}
-                   placeholder="username" 
+                   placeholder={user.fullName} 
                    className="input input-bordered" />
-        </label>
+        </label> */}
 
         <label className="label">
             <span className="label-text">Enter amount:</span>

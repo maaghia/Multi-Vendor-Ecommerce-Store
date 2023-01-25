@@ -1,5 +1,5 @@
 import React, {useContext, useState, useEffect} from "react";
-import UserProfile from "./MyProfile";
+import ProductInfo from "./MyProfile";
 import { Auth } from "../contexts/Auth";
 
 export default function EditProfile(){

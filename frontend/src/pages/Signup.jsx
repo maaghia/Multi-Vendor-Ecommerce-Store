@@ -9,8 +9,9 @@ export default function Login(){
     const [location, setLocation] = useState("");
     const { error, isLoading, signup } = useSignup();
 
-    const handleSignup = async () => {
-        await signup(email, password, phonenbr);
+    const handleSignup = async (event) => {
+        event.preventDefault();
+        await signup(email, password);
       };
 
     return(

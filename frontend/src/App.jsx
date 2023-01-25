@@ -10,18 +10,14 @@ import Signup from "./pages/Signup";
 import { Auth } from "./contexts/Auth";
 import ProductsForm from "./components/ProductsForm";
 import MyProfile from "./pages/MyProfile"
-import UserProfile from "./pages/UserProfile";
+import ProductInfo from "./pages/ProductInfo";
 import EditProfile from "./pages/EditProfile";
-import Demo from "./pages/Demo";
 import ProfileNFalert from "./components/profileNFalert";
 import MyProducts from "./pages/MyProducts";
 
 function App() {
 
   const { user } = useContext(Auth);
-  /* return(
-    <Demo/>
-  ); */
    return (
     
     <BrowserRouter>
@@ -43,10 +39,10 @@ function App() {
         />
          
          <Route path="/addproduct" element={<ProductsForm/>}/>
-        <Route path="/userProfile" element={<UserProfile />} />
+        <Route path="/ProductInfo" element={<ProductInfo />} />
         <Route path="/myProfile" element={<MyProfile />} />
         <Route path="/myProducts" element={<MyProducts />} />
-        <Route path="/:id" element={<Product />} />
+        <Route path="/:id" element={<ProductInfo />} />
         <Route
             path="/login"
             element={
@@ -57,8 +53,17 @@ function App() {
               )
             }
           />
+          <Route
+            path="/signup"
+            element={
+              !user ? (
+                <Login/>
+              ) : (
+                <Navigate to="/" />
+              )
+            }
+          />
 
-        <Route path="/signup" element={<Signup/>} />
         <Route path="/editProfile" element={<EditProfile/>} />
         <Route path="/profileNFalert" element={<ProfileNFalert/>} />
         
