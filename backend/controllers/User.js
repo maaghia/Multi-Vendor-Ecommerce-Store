@@ -45,7 +45,7 @@ const updateUser = async (req, res) => {
 
   try {
     const user = await User.findById(id);
-    // Copy the values of the body received the Product object. Returns the target object.
+    // Copy the values of the body received the User object. Returns the target object.
     const updatedUser = Object.assign(user, req.body);
 
     await updatedUser.save();
@@ -86,6 +86,23 @@ const getUsers = async (req, res) => {
   }
 };
 
+//Read on User by it's ID
+const getUserById = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const user = await User.findById(id);
+
+    if (!user) {
+      return res.status(404).json({ error: "User not found!" });
+    }
+
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(400).json({ message: "Error finding User!" });
+  }
+};
+
 
 module.exports = { 
   login, 
@@ -93,4 +110,5 @@ module.exports = {
   updateUser,
   getUserCity,
   getUsers,
+  getUserById,
 };

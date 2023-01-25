@@ -16,11 +16,11 @@ const UserSchema = new Schema({
   },
   fullName: {
     type: String,
-    required: false
+    required: false,
   },
   phoneNbr: {
     type: String,
-    required: true,
+    required: false,
   },
   location: {
     type: String,
@@ -39,12 +39,12 @@ UserSchema.statics.signup = async function(email, password, phoneNbr) {
         throw Error("Credentials must be valid")
     }
     
-    //todo: add validation for phone nbr
+    /* //todo: add validation for phone nbr
     if(!validator.isMobilePhone(phoneNbr, ['ar-DZ'])){
       throw Error("Credentials must be valid")
       
     }
-
+ */
     const emailExists = await this.findOne({email});
 
     if(emailExists) {

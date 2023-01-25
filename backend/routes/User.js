@@ -5,7 +5,8 @@ const { login,
         signup, 
         updateUser, 
         getUserCity,
-        getUsers    } = require('../controllers/User');
+        getUsers,
+        getUserById    } = require('../controllers/User');
 const AuthMiddleware = require("../middlewares/Auth");
 
 // Login route
@@ -22,5 +23,8 @@ router.get("/city/:location", getUserCity);
 
 //get users
 router.get("/", getUsers);
+
+//get user by id 
+router.get("/:id", getUserById);
 
 module.exports = router;
