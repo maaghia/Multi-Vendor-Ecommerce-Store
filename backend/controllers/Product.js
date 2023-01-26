@@ -20,15 +20,18 @@ const getAndCheckOwnership = async (id, user_id) => {
 
 // Create a Product
 const createProduct = async (req, res) => {
-  const { title, description, category} = req.body;
+  const { title, postedBy, price, category, location, description} = req.body;
   
   //add to a database
   try {
     const product = await Product.create({
       title,
+      price,
       description,
       category,
-      postedBy :req.user._id,
+      postedBy,
+      //postedBy :req.user._id,
+      location,
     });
 
     res.status(201).json(product);

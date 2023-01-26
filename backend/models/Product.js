@@ -9,7 +9,7 @@ const ProductSchema = new Schema({
   },
   description: {
     type: String,
-    required: true,
+    required: false,
   },
   category: {
     type: String,
@@ -17,7 +17,7 @@ const ProductSchema = new Schema({
   },
   postedBy:{
     type: Schema.ObjectId,
-    required: true,
+    required: false,
   },
   /* imageURL: {
     type: String,
