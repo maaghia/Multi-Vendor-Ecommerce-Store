@@ -5,12 +5,13 @@ export default function ProductsForm({setProducts}) {
   const { user } = useContext(Auth);
 
   const [title, setTitle] = useState("");
-  const [postedBy, setAuthor] = useState(user.id);
+  const [postedBy, setPostedBy] = useState(user.id);
   const [price, setPrice] = useState(0);
+  const [description, setDescription] = useState("");
   const [category, setCategory] = useState(0);
   const [location, setLocation] = useState("");
 
-  console.log(category);
+  console.log(postedBy);
 
   const handleAddProduct = async (event) => {
     event.preventDefault();
@@ -18,7 +19,7 @@ export default function ProductsForm({setProducts}) {
       console.log('user not found!')
       return;
     }
-    const product = { title, postedBy, price,category, location};
+    const product = { title, postedBy, description, price, category, location};
 
     const response = await fetch("http://localhost:3000/api/products", {
       method: "POST",
@@ -35,7 +36,7 @@ export default function ProductsForm({setProducts}) {
 
     console.log(json)
 
-    setProducts(prevState => [...prevState, json])
+     setProducts(prevState => [...prevState, json]) 
     
   };
   
@@ -54,7 +55,7 @@ export default function ProductsForm({setProducts}) {
                     setTitle(e.target.value);
                     }} 
                     placeholder="product title" 
-                    className="input input-bordered" />
+                    className="input input-bordered w-64" />
         </label>
 
         <label className="label">
@@ -68,8 +69,22 @@ export default function ProductsForm({setProducts}) {
                     setPrice(e.target.value);
                     }}
                     placeholder="10" 
-                    className="input input-bordered w-40" />
+                    className="input input-bordered w-48" />
             <span>DZD</span>
+        </label>
+
+        <label className="label">
+            <span className="label-text">Description:</span>
+        </label>
+        <label className="input-group">
+            <span>Description</span>
+            <input type="text" 
+                   value={description}
+                    onChange={(e) => {
+                    setDescription(e.target.value);
+                    }} 
+                    placeholder=". . ." 
+                    className="input input-bordered" />
         </label>
 
         <div className="form-control w-full max-w-xs">
@@ -77,7 +92,7 @@ export default function ProductsForm({setProducts}) {
           <span className="label-text">Pick Category:</span>
         </label>
         <select value={category} 
-                onSelect={(e) => {
+                onChange={(e) => {
                   setCategory(e.target.value);
                   }}
         className="select select-bordered">
@@ -98,7 +113,12 @@ export default function ProductsForm({setProducts}) {
         <label className="label">
           <span className="label-text">Pick City:</span>
         </label>
-        <select className="select select-bordered">
+        <select 
+                value={location} 
+                onChange={(e) => {
+                  setLocation(e.target.value);
+                  }}
+                className="select select-bordered">
           <option value="">City</option>
           <option value="Adrar">Adrar</option>
           <option value="Chlef">Chlef</option>

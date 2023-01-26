@@ -11,7 +11,7 @@ export default function Product({product}){
             {product.title}                                       {/* for the product title */}
             <div className="badge badge-secondary">{product.category}</div>  {/* for the seller */}
             </h4>
-            <p className="text-left">{product.description}</p> {/* for the discription  */}
+            <p className="text-left">{product.description}</p> {/* for the description  */}
             <div className="card-actions justify-end">
             <div className="badge badge-outline">{product.price} 900 DZD</div>  {/* for the price */}
             <div className="buy"> 
