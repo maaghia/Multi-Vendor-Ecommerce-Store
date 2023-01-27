@@ -13,6 +13,7 @@ import MyProfile from "./pages/MyProfile"
 import ProductInfo from "./pages/ProductInfo";
 import EditProfile from "./pages/EditProfile";
 import MyProducts from "./pages/MyProducts";
+import ByCategory from "./pages/ByCategory";
 
 function App() {
   
@@ -42,6 +43,7 @@ function App() {
         <Route path="/ProductInfo" element={<ProductInfo />} />
         <Route path="/myProfile" element={<MyProfile />} />
         <Route path="/myProducts" element={<MyProducts />} />
+        <Route path="/byCategory" element={<ByCategory />} />
         <Route path="/:id" element={<ProductInfo />} />
         <Route
             path="/login"
