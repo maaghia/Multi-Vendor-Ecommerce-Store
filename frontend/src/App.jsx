@@ -12,7 +12,6 @@ import ProductsForm from "./components/ProductsForm";
 import MyProfile from "./pages/MyProfile"
 import ProductInfo from "./pages/ProductInfo";
 import EditProfile from "./pages/EditProfile";
-import ProfileNFalert from "./components/profileNFalert";
 import MyProducts from "./pages/MyProducts";
 
 function App() {
@@ -22,7 +21,8 @@ function App() {
     
     <BrowserRouter>
     <Navbar/>
-    <main className="h-screen flex justify-center">
+    <main className="flex flex-col gap-60">
+    <div className="flex justify-center ">
        <Routes>
         <Route path="/" 
                element={<Products/>}/>
@@ -65,12 +65,13 @@ function App() {
           />
 
         <Route path="/editProfile" element={<EditProfile/>} />
-        <Route path="/profileNFalert" element={<ProfileNFalert/>} />
         
 
       </Routes>
-    </main>
+    </div>
     <Footer/>
+    </main>
+    
     </BrowserRouter>
     ); 
 }

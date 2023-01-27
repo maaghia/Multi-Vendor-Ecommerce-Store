@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useFetchData from "../hooks/useFetchData";
-import Product from "./Product"
+import Product from "./Product";
 export default function Products() {
-  // const {isLoading, apiData, serverError } = useFetchData("/api/products");
-  // console.log(apiData);
 
   const [products, setProducts] = useState([]);
 

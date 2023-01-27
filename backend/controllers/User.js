@@ -2,6 +2,7 @@ const { default: mongoose } = require("mongoose");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
 
+const AuthMiddleware = require("../middlewares/Auth");
 
 const generateToken = (_id) => {
   return jwt.sign({ _id }, process.env.JWT_SECRET, { expiresIn: "7d" });
@@ -16,7 +17,7 @@ const login = async (req, res) => {
 
     //Create the JWT
     const token = generateToken(user._id);
-    res.status(200).json({id:user._id, fullName:user.fullName, phoneNbr: user.phoneNbr, email: user.email, token});
+    res.status(200).json({id:user._id, fullName:user.fullName, phoneNbr: user.phoneNbr, email: user.email, location: user.location, token});
   } catch (error) {
     res.status(400).json(error.message);
   }
@@ -25,15 +26,15 @@ const login = async (req, res) => {
 
 // Signup the user
 const signup = async (req, res) => {
-  const { email, password, phoneNbr} = req.body;
+  const { email, password, phoneNbr, fullName, location} = req.body;
 
   try {
-    const user = await User.signup(email, password, phoneNbr);
+    const user = await User.signup(email, password, phoneNbr, fullName, location);
 
     //Create the JWT
     const token = generateToken(user._id);
 
-    res.status(200).json({id:user._id, email:user.email, token});
+    res.status(200).json({id:user._id, fullName:user.fullName, phoneNbr: user.phoneNbr, email: user.email, location: user.location, token});
   } catch (error) {
     res.status(400).json(error.message);
   }
@@ -47,9 +48,9 @@ const updateUser = async (req, res) => {
     const user = await User.findById(id);
     // Copy the values of the body received the User object. Returns the target object.
     const updatedUser = Object.assign(user, req.body);
-
+    console.log("before",updatedUser)
     await updatedUser.save();
-
+    console.log("after",updatedUser)
     res.status(200).json({
       ok: true,
       message: "User Info updated successfully!",

@@ -19,18 +19,18 @@ const ProductSchema = new Schema({
     type: Schema.ObjectId,
     required: false,
   },
-  /* imageURL: {
+   imageURL: {
     type: String,
     required: false,
     unique: true,
   },
-  state: {
+  /*state: {
     type: String,
     required: true,
-  },
+  },*/
   location: {
     type: String,
     required: false,
-  } */
+  } 
 }, {timestamps: true});
 module.exports = mongoose.model("Product", ProductSchema);

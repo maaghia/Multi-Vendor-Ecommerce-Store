@@ -10,8 +10,9 @@ export default function ProductsForm({setProducts}) {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState(0);
   const [location, setLocation] = useState("");
+  const [image, setImage] = useState(null);
 
-  console.log(postedBy);
+  //console.log(postedBy);
 
   const handleAddProduct = async (event) => {
     event.preventDefault();
@@ -19,8 +20,6 @@ export default function ProductsForm({setProducts}) {
       console.log('user not found!')
       return;
     }
-    const product = { title, postedBy, description, price, category, location};
-
     const response = await fetch("http://localhost:3000/api/products", {
       method: "POST",
       mode: 'cors',
@@ -171,6 +170,20 @@ export default function ProductsForm({setProducts}) {
 
           </select>
       </div>
+
+       {/* <label className="label">
+            <span className="label-text">Image:</span>
+        </label>
+        <label className="input-group">
+            <span>Image</span>
+            <input type="file" 
+                   value={image}
+                    onChange={(e) => {
+                    setImage(e.target.file);
+                    }} 
+                    placeholder="product image" 
+                    className="input input-bordered w-64" />
+        </label>  */}
 
         <button onClick={handleAddProduct} className="btn btn-outline mt-10">Add Product</button>
       

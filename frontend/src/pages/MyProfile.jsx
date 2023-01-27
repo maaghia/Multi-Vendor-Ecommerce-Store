@@ -9,25 +9,17 @@ export default function MyProfile(){
 
     return(
         <div>
-            {/* <div className="p-4 tabs">
-            <button className="tab tab-lifted">Profile</button>
-            <button className="tab tab-lifted tab-active">Products</button>
-            </div> */}
 
             <div className="flex flex-column">
-                {/* <div className="avatar online m-10 w-10">
-                <div className="rounded-full w-24 h-24">
-                    <img src="http://daisyui.com/tailwind-css-component-profile-2@94w.png"></img>
-                </div>
-                </div> */}
-
                 <div className="card shadow-2xl w-80 m-4">
                 <div className="flex">
                     <div> <img className="w-20 rounded-full" src="https://placeimg.com/80/80/people" /> </div>
-                    <div className="mt-5"> <button className="btn btn-link">Edit Profile</button> </div>
+                    <div className="mt-5"> 
+                    <NavLink to="/editProfile" className="btn btn-link">Edit Profile</NavLink> 
+                    </div>
                 </div>
                 <div className="card-body">
-                    <h2 className="card-title">Full Name{/* {user.fullName} */}</h2>
+                    <h2 className="card-title"> {user.fullName} </h2>
                     <h3 className="flex gap-5">
                         <span>
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-telephone" viewBox="0 0 16 16">

@@ -5,11 +5,11 @@ const validator = require('validator')
 const Schema = mongoose.Schema;
 
 const UserSchema = new Schema({
-  id: {
+  /* id: {
     type: String,
     required: true,
     unique: true,
-  },
+  }, */
   email: {
     type: String,
     required: true,
@@ -33,7 +33,7 @@ const UserSchema = new Schema({
   }
 }, {timestamps: true});
 
-UserSchema.statics.signup = async function(email, password, phoneNbr) {
+UserSchema.statics.signup = async function(email, password, phoneNbr, fullName, location) {
 
     //Validating email and password and phone nbr
     if(!validator.isEmail(email)){
@@ -61,7 +61,7 @@ UserSchema.statics.signup = async function(email, password, phoneNbr) {
     //hashed password
     const hashedPassword = await bcrypt.hash(password, salt)
 
-    const user = await this.create({email, password: hashedPassword, phoneNbr})
+    const user = await this.create({email, password: hashedPassword, phoneNbr, fullName, location})
 
     return user
 }
