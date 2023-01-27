@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Auth } from "../contexts/Auth";
 import Product from "../components/Product";
-export default function MyProducts() {
+export default function ByCategory() {
     const { user } = useContext(Auth);
     
     const [products, setProducts] = useState([]);
