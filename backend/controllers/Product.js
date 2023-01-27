@@ -81,6 +81,21 @@ const getProductCategory = async (req, res) => {
   }
 };
 
+//fetch products by category
+const getProductCity = async (req, res) => {
+  const {location} = req.params;
+  try {
+    const products = await Product.find({location}).sort({ createdAt: -1 });
+    if( !products || products.length === 0){
+      return res.status(404).json({ error: "No product found in this city!" });
+    }
+    res.status(200).json(products);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+};
+
+
 //fetch products by user (postedBy)
 const getProductsByUser = async (req, res) => {
   const {postedBy} = req.params;
@@ -146,4 +161,5 @@ module.exports = {
   getProductCategory,
   updateProduct,
   deleteProduct,
+  getProductCity,
 };
