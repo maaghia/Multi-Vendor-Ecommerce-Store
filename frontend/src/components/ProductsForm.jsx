@@ -20,6 +20,8 @@ export default function ProductsForm({setProducts}) {
       console.log('user not found!')
       return;
     }
+    const product = { title, postedBy, description, price, category, location};
+
     const response = await fetch("http://localhost:3000/api/products", {
       method: "POST",
       mode: 'cors',
@@ -101,6 +103,7 @@ export default function ProductsForm({setProducts}) {
             <option value="Toys">Toys</option>
             <option value="Electronics">Electronics</option>
             <option value="Cosmetics">Cosmetics</option>
+            <option value="Accesories">Accesories</option>
             <option value="Home Furniture">Home Furniture</option>
             <option value="Sport Materials">Sport Materials</option>
             <option value="Sea Materials">Sea Materials</option>
@@ -171,7 +174,7 @@ export default function ProductsForm({setProducts}) {
           </select>
       </div>
 
-       {/* <label className="label">
+      {/* <label className="label">
             <span className="label-text">Image:</span>
         </label>
         <label className="input-group">
@@ -183,8 +186,8 @@ export default function ProductsForm({setProducts}) {
                     }} 
                     placeholder="product image" 
                     className="input input-bordered w-64" />
-        </label>  */}
-
+        </label>
+ */}
         <button onClick={handleAddProduct} className="btn btn-outline mt-10">Add Product</button>
       
     </div>
