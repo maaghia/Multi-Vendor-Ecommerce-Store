@@ -15,6 +15,7 @@ import EditProfile from "./pages/EditProfile";
 import MyProducts from "./pages/MyProducts";
 import ByCategory from "./pages/ByCategory";
 import ByCity from "./pages/ByCity";
+import Search from "./components/Search";
 
 function App() {
   
@@ -44,6 +45,7 @@ function App() {
         <Route path="/ProductInfo" element={<ProductInfo />} />
         <Route path="/myProfile" element={<MyProfile />} />
         <Route path="/myProducts" element={<MyProducts />} />
+        <Route path="/search" element={<Search/>}/>
         <Route path="/byCategory" element={<ByCategory />} />
         <Route path="/byCity" element={<ByCity />} />
         <Route path="/:id" element={<ProductInfo />} />
