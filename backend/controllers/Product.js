@@ -21,7 +21,8 @@ const getAndCheckOwnership = async (id, user_id) => {
 // Create a Product
 const createProduct = async (req, res) => {
   const { title, postedBy, price, category, location, description} = req.body;
-  
+  const {_id} = req.user;
+  console.log(_id)
   //add to a database
   try {
     const product = await Product.create({
@@ -29,12 +30,13 @@ const createProduct = async (req, res) => {
       price,
       description,
       category,
-      postedBy,
-      //postedBy :req.user._id,
+      //postedBy,
+      postedBy : _id,
       location,
     });
 
     res.status(201).json(product);
+    console.log(product.price)
   } catch (error) {
     res.status(400).json({ error: true, message: error.message });
   }
@@ -56,7 +58,7 @@ const getProduct = async (req, res) => {
 
   try {
     const product = await Product.findById(id);
-
+    
     if (!product) {
       return res.status(404).json({ error: "Product not found!" });
     }

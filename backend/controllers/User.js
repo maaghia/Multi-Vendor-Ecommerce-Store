@@ -40,7 +40,7 @@ const signup = async (req, res) => {
   }
 };
 
-//update info (phone nbr, fullName, address)
+//update info (phone nbr, fullName, email, address)
 const updateUser = async (req, res) => {
   const id = req.user._id;
 
@@ -51,7 +51,7 @@ const updateUser = async (req, res) => {
     console.log("before",updatedUser)
     await updatedUser.save();
     console.log("after",updatedUser)
-    res.status(200).json({
+    res.status(200).json({  
       ok: true,
       message: "User Info updated successfully!",
       data: updatedUser,

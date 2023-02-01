@@ -24,10 +24,10 @@ const ProductSchema = new Schema({
     required: false,
     unique: true,
   },
-  /*state: {
+  price: {
     type: String,
-    required: true,
-  },*/
+    required: false,
+  },
   location: {
     type: String,
     required: false,

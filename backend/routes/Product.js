@@ -31,7 +31,7 @@ router.get("/city/:location", getProductCity);
 router.get("/postedBy/:postedBy", getProductsByUser);
 
 // POST Create a new Product
-router.post("/", createProduct);
+router.post("/", AuthMiddleware, createProduct);
 
 // PATCH Update a Product by it's id
 router.patch("/:id", updateProduct);

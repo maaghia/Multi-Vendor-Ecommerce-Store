@@ -13,7 +13,7 @@ export default function Product({product}){
             </h4>
             <p className="text-left">{product.description}</p> {/* for the description  */}
             <div className="card-actions justify-end">
-            <div className="badge badge-outline">{product.price} 900 DZD</div>  {/* for the price */}
+            <div className="badge badge-outline">{product.price}</div>  {/* for the price */}
             <div className="buy"> 
             <NavLink to={`/${product._id}`} className="hover:animate-bounce">
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-cart-plus" viewBox="0 0 16 16">

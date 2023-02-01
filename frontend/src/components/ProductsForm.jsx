@@ -6,9 +6,9 @@ export default function ProductsForm({setProducts}) {
 
   const [title, setTitle] = useState("");
   const [postedBy, setPostedBy] = useState(user.id);
-  const [price, setPrice] = useState(0);
+  const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
-  const [category, setCategory] = useState(0);
+  const [category, setCategory] = useState("");
   const [location, setLocation] = useState("");
   const [image, setImage] = useState(null);
 
@@ -36,8 +36,8 @@ export default function ProductsForm({setProducts}) {
     const json = await response.json()
 
     console.log(json)
-
-     setProducts(prevState => [...prevState, json]) 
+    console.log(price)/* 
+     setProducts(prevState => [...prevState, json])  */
     
   };
   
@@ -64,7 +64,7 @@ export default function ProductsForm({setProducts}) {
         </label>
         <label className="input-group">
             <span>Price</span>
-            <input  type="number"
+            <input  type="text"
                     value={price}
                     onChange={(e) => {
                     setPrice(e.target.value);
@@ -104,6 +104,7 @@ export default function ProductsForm({setProducts}) {
             <option value="Electronics">Electronics</option>
             <option value="Cosmetics">Cosmetics</option>
             <option value="Accesories">Accesories</option>
+            <option value="Books">Books</option>
             <option value="Home Furniture">Home Furniture</option>
             <option value="Sport Materials">Sport Materials</option>
             <option value="Sea Materials">Sea Materials</option>
