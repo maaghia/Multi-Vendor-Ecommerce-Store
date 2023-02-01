@@ -1,5 +1,4 @@
 import React, {useContext, useState, useEffect} from "react";
-import UserProfile from "./MyProfile";
 import { Auth } from "../contexts/Auth";
 import { NavLink } from "react-router-dom";
 
@@ -10,9 +9,16 @@ export default function EditProfile(){
     const [email, setEmail] = useState("");
     const [phoneNbr, setPhoneNbr] = useState("");
     const [location, setLocation] = useState("");
-    
+
     const handleEditProfile = async (event) => {
         event.preventDefault();
+
+        let updatedUser = {
+            fullName: fullName ? fullName : user?.fullName,
+            location: location ? location : user?.location,
+            email: email ? email : user?.email,
+            phoneNbr: phoneNbr ? phoneNbr : user?.phoneNbr,
+        }
       
           const response = await fetch("http://localhost:3000/api/users/update", {
             method: "PATCH",
@@ -21,13 +27,12 @@ export default function EditProfile(){
               "Content-Type": "application/json",
               "Authorization": `Bearer ${user.token}`
             },
-            body: JSON.stringify(user),
+            body: JSON.stringify(updatedUser), 
             
           });
-          
           const json = await response.json()
       
-          console.log(json)      
+          console.log(json)    
       };
          
     return(
@@ -47,10 +52,11 @@ export default function EditProfile(){
             <label className="input-group">
                 <span>Name</span>
                 <input type="text" 
-                    value={fullName} 
-                    placeholder= {user?.fullName} 
+                    value={fullName}
+                    placeholder={user?.fullName}
                     onChange={(e) => {
                         setFullName(e.target.value);
+                        console.log(e.target.value)
                     }}
                     className="input input-bordered w-60" />
             </label>
@@ -64,7 +70,7 @@ export default function EditProfile(){
                 <span>E-mail</span>
                 <input type="text" 
                     value={email} 
-                    placeholder= {user?.email}
+                    placeholder={user?.email}
                     onChange={(e) => {
                         setEmail(e.target.value);
                     }}
@@ -79,7 +85,7 @@ export default function EditProfile(){
             <label className="input-group">
                 <span>Phone Nb</span>
                 <input type="text" 
-                    placeholder={user?.phoneNbr} 
+                    placeholder={user?.phoneNbr}
                     value={phoneNbr}
                     onChange={(e) => {
                         setPhoneNbr(e.target.value);
