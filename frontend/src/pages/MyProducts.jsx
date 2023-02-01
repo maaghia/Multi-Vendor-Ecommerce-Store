@@ -10,7 +10,7 @@ export default function MyProducts() {
     //console.log(userid)
     
     useEffect(() => {
-        fetch(`http://localhost:3000/api/products/postedBy/63948f020ec60e6eaf334731`)
+        fetch(`http://localhost:3000/api/products/postedBy/${user.id}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(
