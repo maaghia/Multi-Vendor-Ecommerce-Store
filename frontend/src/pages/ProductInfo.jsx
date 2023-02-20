@@ -6,7 +6,7 @@ export default function ProductInfo(){
     const [product, setProduct] = useState("");
     const [seller, setSeller] = useState("");
     const {id} = useParams();
-
+ 
    
 
     useEffect(() => {
@@ -17,11 +17,11 @@ export default function ProductInfo(){
         }
         fetchProduct(id);
 
-
-        fetch(`http://localhost:3000/api/users/${product.postedBy}`).then((response) => response.json()).then((data) => {
+        if(product){
+            fetch(`http://localhost:3000/api/users/${product.postedBy}`).then((response) => response.json()).then((data) => {
             console.log(data)
             setSeller(data)
-        })
+        })}
         
     },[]);
     

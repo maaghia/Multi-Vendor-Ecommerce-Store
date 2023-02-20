@@ -1,11 +1,12 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Auth } from "../contexts/Auth";
 import Product from "../components/Product";
-export default function ByCity() {
+export default function ByCity () {
     const { user } = useContext(Auth);
-    
+    const { state } = this.props.params
+
     const [products, setProducts] = useState([]);
-    const [city, setCity] = useState("Algeirs");
+    const [city, setCity] = useState(state);
     console.log(city)
 
     

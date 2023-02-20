@@ -49,6 +49,7 @@ function App() {
         <Route path="/byCategory" element={<ByCategory />} />
         <Route path="/byCity" element={<ByCity />} />
         <Route path="/:id" element={<ProductInfo />} />
+        <Route path="/search" element={<Search/>}/>
         <Route
             path="/login"
             element={
