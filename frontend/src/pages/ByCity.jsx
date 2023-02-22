@@ -1,17 +1,18 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Auth } from "../contexts/Auth";
 import Product from "../components/Product";
+import { useParams } from "react-router-dom";
 export default function ByCity () {
     const { user } = useContext(Auth);
-    const { state } = this.props.params
 
     const [products, setProducts] = useState([]);
-    const [city, setCity] = useState(state);
-    console.log(city)
+    
+    const { city } = useParams();
+    console.log("ByCity", city)
 
     
     useEffect(() => {
-        fetch(`http://localhost:3000/api/products/category/${city}`)
+        fetch(`http://localhost:3000/api/products/city/${city}`)
       .then((response) => {
         if (!response.ok) {
           throw new Error(

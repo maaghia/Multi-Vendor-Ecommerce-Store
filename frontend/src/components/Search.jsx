@@ -2,47 +2,36 @@ import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import ByCategory from "../pages/ByCategory";
 import ByCity from "../pages/ByCity";
+import { createContext } from 'react';
+import { AppContext } from '../AppContext';
+import { useNavigate } from 'react-router-dom';
 
-export default function Search(){
 
-    const [category, setCategory] = useState("");
+export default function Search(props){
     const [location, setLocation] = useState("");
+    const [category, setCategory] = useState("");
+    
+    const navigate = useNavigate();
 
-    const handleSearch = async () => {
-        console.log(category, location)
-        {category && (
-            <Link
-            to={{
-                pathname: "../pages/ByCategory",
-                state: category 
-            }}
-            ></Link>
-        )}
+    const handleSearch = () => {
+    console.log(category, location);
 
-        {location && (
-            <Link
-            to={{
-                pathname: "../pages/ByCity",
-                state: location 
-            }}
-            ></Link>
-        )}
-        
-      };
+    if (category) {
+        navigate(`/byCategory/${category}`);
+    }
+
+    if (location) {
+        navigate(`/byCity/${location}`);
+    }
+    };
+
+
 
     return(
-        <div className="flex flex-col gap-5 mt-20">
-            {/* <div className="flex gap-5 mt-10 justify-center">
-            <input type="text" placeholder="Type here" className="input input-primary pr-14 pl-14" />
-            <button  className="ease-in-out duration-300">
-            <span className="mt-5"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-search" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-            </svg></span>
-            </button>
-            </div> */}
+        <div className="flex flex-row gap-5 mt-20">
 
             <div className="flex gap-5">
-                <div className="form-control w-full max-w-xs">
+                <div className="form-control w-full max-w-xs mt-1">
                 <label className="label">
                 <span className="label-text">Search by Category:</span>
                 </label>
@@ -65,7 +54,7 @@ export default function Search(){
             </div>
 
             
-            <div className="form-control w-full max-w-xs">
+           {/*  <div className="form-control w-full max-w-xs">
                 <label className="label">
                 <span className="label-text">Search by City:</span>
                 </label>
@@ -126,7 +115,7 @@ export default function Search(){
                 <option value="Tahoua">Tahoua</option>
 
                 </select>
-            </div>
+            </div> */}
                 
             </div>
 

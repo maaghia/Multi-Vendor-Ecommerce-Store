@@ -20,8 +20,16 @@ import Search from "./components/Search";
 function App() {
   
   const { user } = useContext(Auth);
+  const [selectedCategory, setSelectedCategory] = useState('');
+  const [selectedCity, setSelectedCity] = useState('');
+  //const history = useHistory();
+  
+  const handleSearch = (category, city) => {
+    setSelectedCategory(category);
+    setSelectedCity(city);
+  };
+
    return (
-    
     <BrowserRouter>
     <Navbar/>
     <main className="flex flex-col gap-60">
@@ -46,8 +54,8 @@ function App() {
         <Route path="/myProfile" element={<MyProfile />} />
         <Route path="/myProducts" element={<MyProducts />} />
         <Route path="/search" element={<Search/>}/>
-        <Route path="/byCategory" element={<ByCategory />} />
-        <Route path="/byCity" element={<ByCity />} />
+        <Route path="/byCategory/:category" element={<ByCategory />} />
+        <Route path="/byCity/:location" element={<ByCity />} />
         <Route path="/:id" element={<ProductInfo />} />
         <Route path="/search" element={<Search/>}/>
         <Route

@@ -1,13 +1,16 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Auth } from "../contexts/Auth";
 import Product from "../components/Product";
+import { useParams } from "react-router-dom";
+
 export default function ByCategory() {
     const { user } = useContext(Auth);
     
     const [products, setProducts] = useState([]);
-    const [category, setCategory] = useState("");
 
-    
+    const { category } = useParams();
+    console.log("ByCategory", category)
+
     useEffect(() => {
         fetch(`http://localhost:3000/api/products/category/${category}`)
       .then((response) => {
@@ -24,7 +27,7 @@ export default function ByCategory() {
       })
       .catch((e) => console.log(e));
 
-    },[]); 
+    },[category]); 
 
   return (
     <div>
