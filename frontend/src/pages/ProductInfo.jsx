@@ -23,7 +23,7 @@ export default function ProductInfo(){
             setSeller(data)
         })}
         
-    },[]);
+    },[product, seller]);
     
     
 
