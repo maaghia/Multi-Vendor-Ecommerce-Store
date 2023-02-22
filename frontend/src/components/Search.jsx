@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import ByCategory from "../pages/ByCategory";
 import ByCity from "../pages/ByCity";
 import { createContext } from 'react';
-import { AppContext } from '../AppContext';
 import { useNavigate } from 'react-router-dom';
 
 
