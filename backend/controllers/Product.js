@@ -20,6 +20,7 @@ const getAndCheckOwnership = async (id, user_id) => {
 
 // Create a Product
 const createProduct = async (req, res) => {
+  console.log(req.file, req.body)
   const { title, postedBy, price, category, location, description} = req.body;
   const {_id} = req.user;
   console.log(_id)
@@ -33,6 +34,7 @@ const createProduct = async (req, res) => {
       //postedBy,
       postedBy : _id,
       location,
+      imageURL: `/images/${req.file.filename}`
     });
 
     res.status(201).json(product);

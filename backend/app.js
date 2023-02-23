@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 mongoose.set('strictQuery', false);
 const userRoutes = require('./routes/User');
 const productRoutes = require("./routes/Product");
+const imageRoutes = require("./routes/Images");
 
 //express app
 const app = express();
@@ -21,6 +22,7 @@ app.use((req, res, next) => {
 //Registeered routes
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
+app.use("/api/images", imageRoutes);
 
 mongoose
   .connect(process.env.MONGODB_URL)

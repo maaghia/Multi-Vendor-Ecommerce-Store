@@ -1,7 +1,5 @@
 import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import ByCategory from "../pages/ByCategory";
-import ByCity from "../pages/ByCity";
 import { createContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 

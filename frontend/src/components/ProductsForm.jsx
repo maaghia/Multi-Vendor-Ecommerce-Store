@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
 import { Auth } from "../contexts/Auth";
 
-export default function ProductsForm({setProducts}) {
+export default function ProductsForm({ setProducts }) {
   const { user } = useContext(Auth);
 
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("Product title");
   const [postedBy, setPostedBy] = useState(user.id);
-  const [price, setPrice] = useState("");
-  const [description, setDescription] = useState("");
-  const [category, setCategory] = useState("");
-  const [location, setLocation] = useState("");
+  const [price, setPrice] = useState("151");
+  const [description, setDescription] = useState("Description");
+  const [category, setCategory] = useState("Electronics");
+  const [location, setLocation] = useState("Algeirs");
   const [image, setImage] = useState(null);
 
   //console.log(postedBy);
@@ -17,111 +17,127 @@ export default function ProductsForm({setProducts}) {
   const handleAddProduct = async (event) => {
     event.preventDefault();
     if (!user) {
-      console.log('user not found!')
+      console.log("user not found!");
       return;
     }
-    const product = { title, postedBy, description, price, category, location};
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("postedBy", postedBy);
+    formData.append("description", description);
+    formData.append("price", price);
+    formData.append("location", location);
+    formData.append("category", category);
 
+    formData.append("image", image, image.name);
+
+    //const product = { title, postedBy, description, price, category, location };
+    for (const value of formData.values()) {
+      console.log(value);
+    }
     const response = await fetch("http://localhost:3000/api/products", {
       method: "POST",
-      mode: 'cors',
+      mode: "cors",
       headers: {
-        "Content-Type": "application/json",
-        "Authorization": `Bearer ${user.token}`
+        Authorization: `Bearer ${user.token}`,
       },
-      body: JSON.stringify(product),
-      
+      body: formData,
     });
-    
-    const json = await response.json()
 
-    console.log(json)
-    console.log(price)/* 
+    const json = await response.json();
+
+    console.log(json);
+    console.log(price); 
+    /* 
      setProducts(prevState => [...prevState, json])  */
-    
   };
-  
 
   return (
     <div className="flex-row justify-center">
+      <label className="label">
+        <span className="label-text">Title:</span>
+      </label>
+      <label className="input-group">
+        <span>Title</span>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => {
+            setTitle(e.target.value);
+          }}
+          placeholder="product title"
+          className="input input-bordered w-64"
+        />
+      </label>
 
-        <label className="label">
-            <span className="label-text">Title:</span>
-        </label>
-        <label className="input-group">
-            <span>Title</span>
-            <input type="text" 
-                   value={title}
-                    onChange={(e) => {
-                    setTitle(e.target.value);
-                    }} 
-                    placeholder="product title" 
-                    className="input input-bordered w-64" />
-        </label>
+      <label className="label">
+        <span className="label-text">Enter amount:</span>
+      </label>
+      <label className="input-group">
+        <span>Price</span>
+        <input
+          type="text"
+          value={price}
+          onChange={(e) => {
+            setPrice(e.target.value);
+          }}
+          placeholder="10"
+          className="input input-bordered w-48"
+        />
+        <span>DZD</span>
+      </label>
 
-        <label className="label">
-            <span className="label-text">Enter amount:</span>
-        </label>
-        <label className="input-group">
-            <span>Price</span>
-            <input  type="text"
-                    value={price}
-                    onChange={(e) => {
-                    setPrice(e.target.value);
-                    }}
-                    placeholder="10" 
-                    className="input input-bordered w-48" />
-            <span>DZD</span>
-        </label>
+      <label className="label">
+        <span className="label-text">Description:</span>
+      </label>
+      <label className="input-group">
+        <span>Description</span>
+        <input
+          type="text"
+          value={description}
+          onChange={(e) => {
+            setDescription(e.target.value);
+          }}
+          placeholder=". . ."
+          className="input input-bordered"
+        />
+      </label>
 
-        <label className="label">
-            <span className="label-text">Description:</span>
-        </label>
-        <label className="input-group">
-            <span>Description</span>
-            <input type="text" 
-                   value={description}
-                    onChange={(e) => {
-                    setDescription(e.target.value);
-                    }} 
-                    placeholder=". . ." 
-                    className="input input-bordered" />
-        </label>
-
-        <div className="form-control w-full max-w-xs">
+      <div className="form-control w-full max-w-xs">
         <label className="label">
           <span className="label-text">Pick Category:</span>
         </label>
-        <select value={category} 
-                onChange={(e) => {
-                  setCategory(e.target.value);
-                  }}
-        className="select select-bordered">
-            <option value="">Category</option>
-            <option value="Clothes">Clothes</option>
-            <option value="Dishes">Dishes</option>
-            <option value="Toys">Toys</option>
-            <option value="Electronics">Electronics</option>
-            <option value="Cosmetics">Cosmetics</option>
-            <option value="Accesories">Accesories</option>
-            <option value="Books">Books</option>
-            <option value="Home Furniture">Home Furniture</option>
-            <option value="Sport Materials">Sport Materials</option>
-            <option value="Sea Materials">Sea Materials</option>
+        <select
+          value={category}
+          onChange={(e) => {
+            setCategory(e.target.value);
+          }}
+          className="select select-bordered"
+        >
+          <option value="">Category</option>
+          <option value="Clothes">Clothes</option>
+          <option value="Dishes">Dishes</option>
+          <option value="Toys">Toys</option>
+          <option value="Electronics">Electronics</option>
+          <option value="Cosmetics">Cosmetics</option>
+          <option value="Accesories">Accesories</option>
+          <option value="Books">Books</option>
+          <option value="Home Furniture">Home Furniture</option>
+          <option value="Sport Materials">Sport Materials</option>
+          <option value="Sea Materials">Sea Materials</option>
         </select>
       </div>
 
-      
       <div className="form-control w-full max-w-xs">
         <label className="label">
           <span className="label-text">Pick City:</span>
         </label>
-        <select 
-                value={location} 
-                onChange={(e) => {
-                  setLocation(e.target.value);
-                  }}
-                className="select select-bordered">
+        <select
+          value={location}
+          onChange={(e) => {
+            setLocation(e.target.value);
+          }}
+          className="select select-bordered"
+        >
           <option value="">City</option>
           <option value="Adrar">Adrar</option>
           <option value="Chlef">Chlef</option>
@@ -171,26 +187,27 @@ export default function ProductsForm({setProducts}) {
           <option value="Ghardaia">Ghardaia</option>
           <option value="Relizane">Relizane</option>
           <option value="Tahoua">Tahoua</option>
-
-          </select>
+        </select>
       </div>
 
-      {/* <label className="label">
-            <span className="label-text">Image:</span>
-        </label>
-        <label className="input-group">
-            <span>Image</span>
-            <input type="file" 
-                   value={image}
-                    onChange={(e) => {
-                    setImage(e.target.file);
-                    }} 
-                    placeholder="product image" 
-                    className="input input-bordered w-64" />
-        </label>
- */}
-        <button onClick={handleAddProduct} className="btn btn-outline mt-10">Add Product</button>
-      
+      <label className="label">
+        <span className="label-text">Image:</span>
+      </label>
+      <label className="input-group">
+        <span>Image</span>
+        <input
+          type="file"
+          onChange={(e) => {
+            setImage(e.target.files[0]);
+          }}
+          placeholder="product image"
+          className="input input-bordered w-64"
+        />
+      </label>
+
+      <button onClick={handleAddProduct} className="btn btn-outline mt-10">
+        Add Product
+      </button>
     </div>
   );
 }

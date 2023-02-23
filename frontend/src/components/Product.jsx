@@ -5,7 +5,7 @@ export default function Product({product}){
 
     return(
         <div className="card w-60 bg-base-100 shadow-xl p-0">
-        <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+        <figure><img src={import.meta.env.VITE_API_URL + product.imageURL} alt="product's image" /></figure>
         <div className="card-body ">
             <h4 className="card-title text-left">
             {product.title}                                       {/* for the product title */}

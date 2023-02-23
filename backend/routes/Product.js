@@ -1,4 +1,7 @@
 const express = require("express");
+const multer  = require('multer')
+const upload = multer({ dest: 'uploads/' })
+
 const {
   createProduct,
   getProducts,
@@ -31,12 +34,14 @@ router.get("/city/:location", getProductCity);
 router.get("/postedBy/:postedBy", getProductsByUser);
 
 // POST Create a new Product
-router.post("/", AuthMiddleware, createProduct);
+router.post("/", AuthMiddleware, upload.single('image'),  createProduct);
 
 // PATCH Update a Product by it's id
 router.patch("/:id", updateProduct);
 
 // DELETE delete a Product by it's ID
 router.delete("/:id", deleteProduct);
+
+
 
 module.exports = router;
