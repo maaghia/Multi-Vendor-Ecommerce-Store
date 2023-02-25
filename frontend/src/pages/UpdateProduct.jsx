@@ -1,57 +1,47 @@
-import React, { useContext, useState } from "react";
+import React, {useContext, useState, useEffect} from "react";
 import { Auth } from "../contexts/Auth";
+import { NavLink } from "react-router-dom";
 
-export default function ProductsForm() {
-  const { user } = useContext(Auth);
 
-  const [title, setTitle] = useState("Product title");
-  const [postedBy, setPostedBy] = useState(user.id);
-  const [price, setPrice] = useState("151");
-  const [description, setDescription] = useState("Description");
-  const [category, setCategory] = useState("Electronics");
-  const [location, setLocation] = useState("Algeirs");
-  const [image, setImage] = useState(null);
+export default function UpdateProduct(){
+    const { user } = useContext(Auth);
+    console.log("update prod",user)
+    const [title, setTitle] = useState("Product title");
+    //const [postedBy, setPostedBy] = useState(user.id);
+    const [price, setPrice] = useState("151");
+    const [description, setDescription] = useState("Description");
+    const [category, setCategory] = useState("Electronics");
+    const [location, setLocation] = useState("Algeirs");
+    const [image, setImage] = useState(null);
 
-  //console.log(postedBy);
+    const handleEditProfile = async (event) => {
+        event.preventDefault();
 
-  const handleAddProduct = async (event) => {
-    event.preventDefault();
-    if (!user) {
-      console.log("user not found!");
-      return;
-    }
-    const formData = new FormData();
-    formData.append("title", title);
-    formData.append("postedBy", postedBy);
-    formData.append("description", description);
-    formData.append("price", price);
-    formData.append("location", location);
-    formData.append("category", category);
-
-    formData.append("image", image, image.name);
-
-    //const product = { title, postedBy, description, price, category, location };
-    for (const value of formData.values()) {
-      console.log(value);
-    }
-    const response = await fetch("http://localhost:3000/api/products", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        Authorization: `Bearer ${user.token}`,
-      },
-      body: formData,
-    });
-
-    const json = await response.json();
-
-    console.log(json);
-    console.log(price); 
-    
-  };
-
-  return (
-    <div className="flex-row justify-center">
+        let updatedProduct = {
+            title: title ? title : product?.title,
+            description: description ? description : product?.description,
+            price: price ? price : product?.price,
+            location: location ? location : user?.location,
+            category: category ? category : user?.category,
+            }
+      
+          const response = await fetch(`http://localhost:3000/api/products/`, {
+            method: "PATCH",
+            mode: 'cors',
+            headers: {
+              "Content-Type": "application/json",
+              "Authorization": `Bearer ${user.token}`
+            },
+            body: JSON.stringify(updatedProduct), 
+            
+          });
+          const json = await response.json()
+      
+          console.log(json)    
+      };
+         
+    return(
+        <div className="flex-row justify-center">
       <label className="label">
         <span className="label-text">Title:</span>
       </label>
@@ -204,9 +194,11 @@ export default function ProductsForm() {
         />
       </label>
 
-      <button onClick={handleAddProduct} className="btn btn-outline mt-10">
-        Add Product
-      </button>
+        <div className="flex gap-5 mt-10">
+            <button onClick={handleEditProfile} className="btn btn-success w-20">Save</button>
+            <NavLink to="/myProducts" className="btn btn-error w-20">Cancel</NavLink>        
+        </div> 
     </div>
-  );
+  
+        );
 }
