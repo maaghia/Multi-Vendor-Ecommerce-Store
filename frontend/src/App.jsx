@@ -16,6 +16,7 @@ import MyProducts from "./pages/MyProducts";
 import ByCategory from "./pages/ByCategory";
 import ByCity from "./pages/ByCity";
 import Search from "./components/Search";
+import UpdateProduct from "./pages/UpdateProduct";
 
 function App() {
   
@@ -58,6 +59,7 @@ function App() {
         <Route path="/byCity/:location" element={<ByCity />} />
         <Route path="/:id" element={<ProductInfo />} />
         <Route path="/search" element={<Search/>}/>
+        
         <Route
             path="/login"
             element={
@@ -80,6 +82,7 @@ function App() {
           />
 
         <Route path="/editProfile" element={<EditProfile/>} />
+        <Route path="/editProduct" element={<UpdateProduct/>} />
         
 
       </Routes>

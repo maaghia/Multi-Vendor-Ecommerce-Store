@@ -141,7 +141,7 @@ const updateProduct = async (req, res) => {
 //delete product
 const deleteProduct = async (req, res) => {
   const { id } = req.params;
-
+  console.log("product",id)
   try {
     const product = await getAndCheckOwnership(id, req.user._id);
 

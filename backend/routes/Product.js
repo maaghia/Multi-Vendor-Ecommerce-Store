@@ -1,6 +1,8 @@
 const express = require("express");
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
+const auth = require("../middlewares/auth");
+
 
 const {
   createProduct,
@@ -40,7 +42,7 @@ router.post("/", AuthMiddleware, upload.single('image'),  createProduct);
 router.patch("/:id", updateProduct);
 
 // DELETE delete a Product by it's ID
-router.delete("/:id", deleteProduct);
+router.delete("/:id",auth, deleteProduct);
 
 
 

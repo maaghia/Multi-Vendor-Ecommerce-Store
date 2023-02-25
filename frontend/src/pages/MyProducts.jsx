@@ -1,15 +1,13 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Auth } from "../contexts/Auth";
-import Product from "../components/Product";
+import MyProduct from "../components/MyProduct";
 export default function MyProducts() {
     const { user } = useContext(Auth);
     console.log("from my products",user)
     const [products, setProducts] = useState([]);
     const [userid, setUserid] = useState("");
-    //setUserid(user.id); 
-    //console.log(userid)
     
-    useEffect(() => {
+    /* useEffect(() => {
         fetch(`http://localhost:3000/api/products/postedBy/${user.id}`)
       .then((response) => {
         if (!response.ok) {
@@ -29,20 +27,33 @@ export default function MyProducts() {
 
 
     
-    /* const fetchProducts = async (userid) => {
-        const response = await fetch(`http://localhost:3000/api/products/postedBy/${userid}`)
-        .then((response)=> response.json())
-        .then((data)=>setProducts(data))
-    }
-    fetchProducts(userid); */
-    },[]); 
+    },[]);  */
+
+    useEffect(() => {
+      if (user) {
+        fetch(`http://localhost:3000/api/products/postedBy/${user.id}`)
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(
+                `This is an HTTP error: The status is ${response.status}`
+              );
+            }
+            return response.json();
+          })
+          .then((data) => {
+            setProducts(data);
+          })
+          .catch((e) => console.log(e));
+      }
+    }, [user]);
 
   return (
     <div>
          <div className="flex flex-wrap gap-10 justify-center">
-        { products?.map((product)=> {
-          return <Product product={product}  keys={product._id}/>;
-        })}
+          { products?.map((product)=> {
+            return <MyProduct key={product._id} product={product} />;
+          })}
+
       </div>   
     </div>
   );
