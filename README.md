@@ -16,7 +16,7 @@ https://www.figma.com/community/file/1118064586686184523
 https://screenlane.com/post/ios/gumtree/
 
 Features
-The user interface must have dark/light mode
+The user interface must have dark/light mode [DONE]
 All actions and states should be implemented using Redux
 1- Users
 Authentication: User can signup and sign in using email and password with email verification  [DONE], and using Google Account [IN PROGRESS]
