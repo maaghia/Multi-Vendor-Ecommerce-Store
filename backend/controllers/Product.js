@@ -10,6 +10,7 @@ const getAndCheckOwnership = async (id, user_id) => {
     }
     // Check whether this Product belongs to the signed in user
     if (!product.postedBy.equals(user_id)) {
+      
       throw new Error("You're not authorized to do this!");
     }
     return product;
@@ -117,25 +118,37 @@ const getProductsByUser = async (req, res) => {
 
 //update product by id
 const updateProduct = async (req, res) => {
+  console.log("updateProductBack")
   const { id } = req.params;
+  
 
   try {
+    /* console.log("updateprodback",id, req.user._id) */
+    if (!req.user) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
     const product = await getAndCheckOwnership(id, req.user._id);
-
+    console.log("check ownership ", req.user._id)
     // Copy the values of the body received the Product object. Returns the target object.
-    const updatedProduct = Object.assign(product, req.body);
+    /* const updatedProduct = Object.assign(product, req.body);
     product.updateOne()
 
     await updatedProduct.save();
-
+ */
+    const updatedProduct = await product.findOneAndUpdate({_id: id, owner: req.user._id}, req.body, {new: true});
     res.status(200).json({
       ok: true,
       message: "Product updated successfully!",
       data: updatedProduct,
     });
   } catch (error) {
-    return res.status(400).json(error.message);
-  }
+    console.log(error);
+    res.status(500).json({
+      ok: false,
+      message: "An error occurred while updating the product.",
+      error: error.message
+    });
+  }  
 };
 
 //delete product

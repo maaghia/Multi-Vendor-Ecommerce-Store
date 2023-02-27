@@ -1,44 +1,77 @@
 import React, {useContext, useState, useEffect} from "react";
 import { Auth } from "../contexts/Auth";
 import { NavLink } from "react-router-dom";
+import { useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 
-export default function UpdateProduct(){
-    const { user } = useContext(Auth);
-    console.log("update prod",user)
-    const [title, setTitle] = useState("Product title");
-    //const [postedBy, setPostedBy] = useState(user.id);
-    const [price, setPrice] = useState("151");
-    const [description, setDescription] = useState("Description");
-    const [category, setCategory] = useState("Electronics");
-    const [location, setLocation] = useState("Algeirs");
-    const [image, setImage] = useState(null);
+export default function UpdateProduct() {
 
-    const handleEditProfile = async (event) => {
-        event.preventDefault();
+  // Get the current URL
+  var currentUrl = window.location.href;
 
-        let updatedProduct = {
-            title: title ? title : product?.title,
-            description: description ? description : product?.description,
-            price: price ? price : product?.price,
-            location: location ? location : user?.location,
-            category: category ? category : user?.category,
-            }
-      
-          const response = await fetch(`http://localhost:3000/api/products/`, {
-            method: "PATCH",
-            mode: 'cors',
-            headers: {
-              "Content-Type": "application/json",
-              "Authorization": `Bearer ${user.token}`
-            },
-            body: JSON.stringify(updatedProduct), 
-            
-          });
-          const json = await response.json()
-      
-          console.log(json)    
-      };
+  // Split the URL by '/' character to get the individual parts
+  var urlParts = currentUrl.split('/');
+
+  // The last part of the URL should be the ID we're looking for
+  var productId = urlParts[urlParts.length - 1];
+
+  // Use the productId variable as needed
+  console.log(productId); 
+
+  const { user } = useContext(Auth);
+  const [productData, setProductData] = useState(null);
+  const [title, setTitle] = useState("");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [city, setCity] = useState("");
+  const [image, setImage] = useState(null);
+
+  useEffect(() => {
+    const fetchProductData = async () => {
+      const response = await fetch(`/api/products/${productId}`);
+      const data = await response.json();
+      setProductData(data);
+      setTitle(data.title);
+      setPrice(data.price);
+      setDescription(data.description);
+      setCategory(data.category);
+      setCity(data.city);
+    };
+    fetchProductData();
+  }, [productId]);
+
+  const handleEditProduct = async (event) => {
+    event.preventDefault();
+
+    const updatedProduct = {
+      title: title ? title : productData.title,
+      description: description ? description : productData.description,
+      price: price ? price : productData.price,
+      city: city ? city : productData.city,
+      category: category ? category : productData.category,
+    };
+
+    const response = await fetch(`http://localhost:3000/api/products/${productId}`, {
+      method: "PATCH",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${user.token}`,
+      },
+      body: JSON.stringify(updatedProduct),
+    });
+    const json = await response.json();
+
+    console.log(response);
+  };
+
+  if (!productData) {
+    // If the product data is not yet available, show a loading indicator
+    return <div>Loading...</div>;
+  }
+
          
     return(
         <div className="flex-row justify-center">
@@ -121,9 +154,9 @@ export default function UpdateProduct(){
           <span className="label-text">Pick City:</span>
         </label>
         <select
-          value={location}
+          value={city}
           onChange={(e) => {
-            setLocation(e.target.value);
+            setCity(e.target.value);
           }}
           className="select select-bordered"
         >
@@ -195,7 +228,7 @@ export default function UpdateProduct(){
       </label>
 
         <div className="flex gap-5 mt-10">
-            <button onClick={handleEditProfile} className="btn btn-success w-20">Save</button>
+            <button onClick={handleEditProduct} className="btn btn-success w-20">Save</button>
             <NavLink to="/myProducts" className="btn btn-error w-20">Cancel</NavLink>        
         </div> 
     </div>

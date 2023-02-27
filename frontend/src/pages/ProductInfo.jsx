@@ -32,7 +32,7 @@ export default function ProductInfo(){
             <div className="flex flex-column">
                 <div className="card shadow-2xl w-80 m-4">
                 <figure>
-                    <img src="https://picsum.photos/id/1005/500/250"/>
+                <img src={import.meta.env.VITE_API_URL + product.imageURL} alt="product's image" />
                 </figure>
 
                 

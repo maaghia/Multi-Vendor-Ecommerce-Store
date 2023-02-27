@@ -17,6 +17,7 @@ import ByCategory from "./pages/ByCategory";
 import ByCity from "./pages/ByCity";
 import Search from "./components/Search";
 import UpdateProduct from "./pages/UpdateProduct";
+import { AuthProvider } from "./contexts/Auth";
 
 function App() {
   
@@ -31,6 +32,7 @@ function App() {
   };
 
    return (
+    <AuthProvider>
     <BrowserRouter>
     <Navbar/>
     <main className="flex flex-col gap-60">
@@ -82,7 +84,7 @@ function App() {
           />
 
         <Route path="/editProfile" element={<EditProfile/>} />
-        <Route path="/editProduct" element={<UpdateProduct/>} />
+        <Route path="editProduct/:productId" element={<UpdateProduct/>} />
         
 
       </Routes>
@@ -91,6 +93,7 @@ function App() {
     </main>
     
     </BrowserRouter>
+    </AuthProvider>
     ); 
 }
 
