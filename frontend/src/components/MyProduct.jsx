@@ -12,7 +12,7 @@ export default function MyProduct({product}){
     const deleteProduct = async (id) => {
     try {
         const response = await axios.delete(`http://localhost:3000/api/products/${id}`, {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}`},
+          headers: { Authorization: `Bearer ${user.token}`},
         });
         return response.data;
      } catch (error) {
