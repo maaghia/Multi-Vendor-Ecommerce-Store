@@ -10,6 +10,7 @@ const generateToken = (_id) => {
 
 // Login the user
 const login = async (req, res) => {
+  console.log('this reached')
   const { email, password } = req.body;
 
   try {

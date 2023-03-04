@@ -39,7 +39,7 @@ const createProduct = async (req, res) => {
     });
 
     res.status(201).json(product);
-    console.log(product.price)
+    console.log(req.body)
   } catch (error) {
     res.status(400).json({ error: true, message: error.message });
   }
@@ -118,37 +118,37 @@ const getProductsByUser = async (req, res) => {
 
 //update product by id
 const updateProduct = async (req, res) => {
-  console.log("updateProductBack")
   const { id } = req.params;
-  
-
   try {
-    /* console.log("updateprodback",id, req.user._id) */
     if (!req.user) {
       return res.status(401).json({ message: "Unauthorized" });
     }
     const product = await getAndCheckOwnership(id, req.user._id);
-    console.log("check ownership ", req.user._id)
-    // Copy the values of the body received the Product object. Returns the target object.
-    /* const updatedProduct = Object.assign(product, req.body);
-    product.updateOne()
-
-    await updatedProduct.save();
- */
-    const updatedProduct = await product.findOneAndUpdate({_id: id, owner: req.user._id}, req.body, {new: true});
+    // Update the properties of the product object
+    product.title = req.body.title || product.title;
+    product.description = req.body.description || product.description;
+    product.price = req.body.price || product.price;
+    product.category = req.body.category || product.category;
+    product.location = req.body.location || product.location;
+    // Update imageURL if a new image is provided
+    if (req.file) {
+      product.imageURL = `/images/${req.file.filename}`;
+    }
+    await product.save();
+    console.log(req.body)
     res.status(200).json({
       ok: true,
       message: "Product updated successfully!",
-      data: updatedProduct,
+      data: product,
     });
   } catch (error) {
     console.log(error);
     res.status(500).json({
       ok: false,
       message: "An error occurred while updating the product.",
-      error: error.message
+      error: error.message,
     });
-  }  
+  }
 };
 
 //delete product
