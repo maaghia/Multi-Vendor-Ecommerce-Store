@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import { useNavigate } from "react-router-dom";
 import { useSignup } from "../hooks/useSignup";
 
 export default function Login(){
@@ -9,9 +10,11 @@ export default function Login(){
     const [location, setLocation] = useState("");
     const { error, isLoading, signup } = useSignup();
 
+    const navigate = useNavigate();
     const handleSignup = async (event) => {
         event.preventDefault();
         await signup(email, password, phoneNbr, fullName, location);
+        navigate(`/`);
       };
 
     return(

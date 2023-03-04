@@ -7,8 +7,8 @@ export default function Login(){
     const { error, isLoading, login } = useLogin();
 
     const handleLogin = async () => {
-        await login(email, password);
-      };
+       await login(email, password);
+    };
 
     return(
         <form>
@@ -53,7 +53,7 @@ export default function Login(){
         >
             Login
         </button>
-        {error && <p className="">{error}</p>}
+        {error && <p>{error.message}</p>}
         </form>
     );
 }

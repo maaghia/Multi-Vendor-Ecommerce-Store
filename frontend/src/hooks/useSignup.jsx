@@ -15,6 +15,7 @@ export const useSignup = () => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        //"Authorization": `Bearer ${user.token}`
       },
       body: JSON.stringify({ email, password, phoneNbr, fullName, location }),
     });
