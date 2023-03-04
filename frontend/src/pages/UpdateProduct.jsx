@@ -1,23 +1,32 @@
-import React, {useContext, useState, useEffect} from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Auth } from "../contexts/Auth";
-import { NavLink } from "react-router-dom";
+import { Navigate, NavLink } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
+function useQuery() {
+  const { search } = useLocation();
+
+  return React.useMemo(() => new URLSearchParams(search), [search]);
+}
 
 export default function UpdateProduct() {
+  const temp = useQuery();
+  
+  const navigate = useNavigate();
 
   // Get the current URL
   var currentUrl = window.location.href;
 
   // Split the URL by '/' character to get the individual parts
-  var urlParts = currentUrl.split('/');
+  var urlParts = currentUrl.split("/");
 
   // The last part of the URL should be the ID we're looking for
   var productId = urlParts[urlParts.length - 1];
 
   // Use the productId variable as needed
-  console.log(productId); 
+  console.log(productId);
 
   const { user } = useContext(Auth);
   const [productData, setProductData] = useState(null);
@@ -27,6 +36,7 @@ export default function UpdateProduct() {
   const [category, setCategory] = useState("");
   const [city, setCity] = useState("");
   const [image, setImage] = useState(null);
+  const [imagePreview, setImagePreview] = useState(null);
 
   useEffect(() => {
     const fetchProductData = async () => {
@@ -45,36 +55,65 @@ export default function UpdateProduct() {
   const handleEditProduct = async (event) => {
     event.preventDefault();
 
-    const updatedProduct = {
-      title: title ? title : productData.title,
-      description: description ? description : productData.description,
-      price: price ? price : productData.price,
-      city: city ? city : productData.city,
-      category: category ? category : productData.category,
-    };
+    const formData = new FormData();
+    formData.append('title', title ? title : productData.title);
+    formData.append('description', description ? description : productData.description);
+    formData.append('price', price ? price : productData.price);
+    formData.append('city', city ? city : productData.city);
+    formData.append('category', category ? category : productData.category);
+    formData.append("product", JSON.stringify(productData));
+    formData.append("image", image);
+    
+    console.log("formData: ", formData);
+    console.log("image: ", image);
+    
+    formData.enctype = "multipart/form-data";
 
-    const response = await fetch(`http://localhost:3000/api/products/${productId}`, {
+    let tempp;
+
+    fetch(`http://localhost:3000/api/products/${productId}`, {
+      //check if this URL is correct ?
       method: "PATCH",
       mode: "cors",
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${user.token}`,
       },
-      body: JSON.stringify(updatedProduct),
-    });
-    const json = await response.json();
-
-    console.log(response);
+      body: formData,
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        tempp = data
+        
+      console.log(tempp) 
+        // on success
+        navigate(`/myProducts`);
+      })
+      .catch((err) => {
+        // on error
+        console.error(err);
+      });
   };
 
+  const handleImagePreview = (event) => {
+    event.preventDefault();
+
+    let reader = new FileReader();
+    let file = event.target.files[0];
+
+    reader.onloadend = () => {
+      setImage(file);
+      setImagePreview(reader.result);
+    };
+
+    reader.readAsDataURL(file);
+  };
   if (!productData) {
     // If the product data is not yet available, show a loading indicator
     return <div>Loading...</div>;
   }
 
-         
-    return(
-        <div className="flex-row justify-center">
+  return (
+    <div className="flex-row justify-center">
       <label className="label">
         <span className="label-text">Title:</span>
       </label>
@@ -227,11 +266,14 @@ export default function UpdateProduct() {
         />
       </label>
 
-        <div className="flex gap-5 mt-10">
-            <button onClick={handleEditProduct} className="btn btn-success w-20">Save</button>
-            <NavLink to="/myProducts" className="btn btn-error w-20">Cancel</NavLink>        
-        </div> 
+      <div className="flex gap-5 mt-10">
+        <button onClick={handleEditProduct} className="btn btn-success w-20">
+          Save
+        </button>
+        <NavLink to="/myProducts" className="btn btn-error w-20">
+          Cancel
+        </NavLink>
+      </div>
     </div>
-  
-        );
+  );
 }

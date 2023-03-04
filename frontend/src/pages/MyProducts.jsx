@@ -3,7 +3,7 @@ import { Auth } from "../contexts/Auth";
 import MyProduct from "../components/MyProduct";
 export default function MyProducts() {
     const { user } = useContext(Auth);
-    console.log("from my products",user)
+    //console.log("from my products",user)
     const [products, setProducts] = useState([]);
     const [userid, setUserid] = useState("");
     

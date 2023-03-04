@@ -1,7 +1,6 @@
 const express = require("express");
 const multer  = require('multer')
 const upload = multer({ dest: 'uploads/' })
-const auth = require("../middlewares/auth");
 
 
 const {
@@ -37,12 +36,12 @@ router.get("/postedBy/:postedBy", getProductsByUser);
 
 // POST Create a new Product
 router.post("/", AuthMiddleware, upload.single('image'),  createProduct);
-
+//and here in line 38 u have upload.single('image'), but in update line 41 u don t have it it might be the problem
 // PATCH Update a Product by it's id
-router.patch("/:id", updateProduct);
+router.patch("/:id",AuthMiddleware, upload.single('image'), updateProduct);
 
 // DELETE delete a Product by it's ID
-router.delete("/:id",auth, deleteProduct);
+router.delete("/:id",AuthMiddleware, deleteProduct);
 
 
 

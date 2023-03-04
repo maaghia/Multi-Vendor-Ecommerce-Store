@@ -1,8 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Auth } from "../contexts/Auth";
+import { useNavigate } from 'react-router-dom';
 
 export default function ProductsForm() {
   const { user } = useContext(Auth);
+  const navigate = useNavigate();
 
   const [title, setTitle] = useState("Product title");
   const [postedBy, setPostedBy] = useState(user.id);
@@ -28,25 +30,28 @@ export default function ProductsForm() {
     formData.append("location", location);
     formData.append("category", category);
 
-    formData.append("image", image, image.name);
+    formData.append("image", image);
 
-    //const product = { title, postedBy, description, price, category, location };
     for (const value of formData.values()) {
       console.log(value);
     }
-    const response = await fetch("http://localhost:3000/api/products", {
+    fetch("http://localhost:3000/api/products", {
       method: "POST",
       mode: "cors",
       headers: {
         Authorization: `Bearer ${user.token}`,
       },
       body: formData,
+    })
+    .then((response) => response.json())
+    .then((data) => {    
+    // on success
+      navigate(`/myProducts`);
+    })
+    .catch((err) => {
+      // on error
+      console.error(err);
     });
-
-    const json = await response.json();
-
-    console.log(json);
-    console.log(price); 
     
   };
 

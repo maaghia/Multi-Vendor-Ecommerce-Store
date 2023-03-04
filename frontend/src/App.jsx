@@ -26,10 +26,7 @@ function App() {
   const [selectedCity, setSelectedCity] = useState('');
   //const history = useHistory();
   
-  const handleSearch = (category, city) => {
-    setSelectedCategory(category);
-    setSelectedCity(city);
-  };
+ 
 
    return (
     <AuthProvider>
@@ -53,14 +50,12 @@ function App() {
         />
          
          <Route path="/addproduct" element={<ProductsForm/>}/>
-        <Route path="/ProductInfo" element={<ProductInfo />} />
-        <Route path="/myProfile" element={<MyProfile />} />
-        <Route path="/myProducts" element={<MyProducts />} />
-        <Route path="/search" element={<Search/>}/>
-        <Route path="/byCategory/:category" element={<ByCategory />} />
-        <Route path="/byCity/:location" element={<ByCity />} />
-        <Route path="/:id" element={<ProductInfo />} />
-        <Route path="/search" element={<Search/>}/>
+          <Route path="/ProductInfo" element={<ProductInfo />} />
+          <Route path="/myProfile" element={<MyProfile />} />
+          <Route path="/myProducts" element={<MyProducts />} />
+          <Route path="/:id" element={<ProductInfo />} />
+          
+        
         
         <Route
             path="/login"
@@ -84,8 +79,7 @@ function App() {
           />
 
         <Route path="/editProfile" element={<EditProfile/>} />
-        <Route path="editProduct/:productId" element={<UpdateProduct/>} />
-        
+        <Route path="/editProduct/:productId" element={<UpdateProduct/>} />
 
       </Routes>
     </div>
