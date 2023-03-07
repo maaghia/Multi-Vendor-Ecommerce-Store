@@ -1,16 +1,19 @@
 import React, {useState} from "react";
 import { useLogin } from "../hooks/useLogin";
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Login(){
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const { error, isLoading, login } = useLogin();
+    const navigate = useNavigate();
 
     const handleLogin = async () => {
        await login(email, password);
+       navigate('/');
     };
-
-    return(
+   return(
         <form>
         <div className="login m-10 text-xl">Login</div>
 

@@ -6,12 +6,12 @@ export default function ProductsForm() {
   const { user } = useContext(Auth);
   const navigate = useNavigate();
 
-  const [title, setTitle] = useState("Product title");
+  const [title, setTitle] = useState("");
   const [postedBy, setPostedBy] = useState(user.id);
-  const [price, setPrice] = useState("151");
-  const [description, setDescription] = useState("Description");
-  const [category, setCategory] = useState("Electronics");
-  const [location, setLocation] = useState("Algeirs");
+  const [price, setPrice] = useState("");
+  const [description, setDescription] = useState("");
+  const [category, setCategory] = useState("");
+  const [location, setLocation] = useState("");
   const [image, setImage] = useState(null);
 
   //console.log(postedBy);
@@ -121,13 +121,14 @@ export default function ProductsForm() {
           <option value="Clothes">Clothes</option>
           <option value="Dishes">Dishes</option>
           <option value="Toys">Toys</option>
+          <option value="Games">Games</option>
           <option value="Electronics">Electronics</option>
           <option value="Cosmetics">Cosmetics</option>
           <option value="Accesories">Accesories</option>
           <option value="Books">Books</option>
           <option value="Home Furniture">Home Furniture</option>
-          <option value="Sport Materials">Sport Materials</option>
-          <option value="Sea Materials">Sea Materials</option>
+          <option value="Sport  ">Sport  </option>
+          <option value="Sea  ">Sea  </option>
         </select>
       </div>
 

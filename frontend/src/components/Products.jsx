@@ -11,6 +11,7 @@ export default function Products() {
   const [products, setProducts] = useState([]);
   const temp = useQuery();
   const category = temp.get("category");
+  
 
   /* useEffect(() => {
     fetch("http://localhost:3000/api/products")

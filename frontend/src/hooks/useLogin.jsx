@@ -4,9 +4,6 @@ import { Auth } from "../contexts/Auth";
 export const useLogin = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  //const { user } = useContext(Auth);
-  const { user = { token: "" } } = useContext(Auth);
-  //whats this code above
   const { dispatch } = useContext(Auth);
 
   const login = async (email, password) => {
@@ -23,7 +20,7 @@ export const useLogin = () => {
     });
 
     const json = await response.json();
-
+      console.log('useLogin JSON', json)
     if (!response.ok) {
       setIsLoading(false);
       setError(json);

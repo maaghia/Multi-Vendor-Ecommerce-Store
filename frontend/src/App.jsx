@@ -22,6 +22,7 @@ import { AuthProvider } from "./contexts/Auth";
 function App() {
   
   const { user } = useContext(Auth);
+  //console.log('user from app', user)
   const [selectedCategory, setSelectedCategory] = useState('');
   const [selectedCity, setSelectedCity] = useState('');
   //const history = useHistory();

@@ -6,11 +6,19 @@ import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const { user } = useContext(Auth);
+  
+  //const user = JSON.parse(localStorage.getItem("user"));
   const { logout } = useLogout();
 
   const handleLogout = () => {
     logout();
   };
+
+  /* const[loggedin, setLoggedin] = useState(true)
+  useEffect(() => {
+    if(user) setLoggedin(true)
+    if(!user) setLoggedin(false)
+  }, [user]); */
 
   //theme toggle
   const [theme, setTheme] = useState("dark");
@@ -85,12 +93,13 @@ export default function Navbar() {
               <option value="Clothes">Clothes</option>
               <option value="Dishes">Dishes</option>
               <option value="Toys">Toys</option>
+              <option value="Games">Games</option>
               <option value="Electronics">Electronics</option>
               <option value="Cosmetics">Cosmetics</option>
               <option value="Accesories">Accesories</option>
               <option value="Home Furniture">Home Furniture</option>
-              <option value="Sport Materials">Sport Materials</option>
-              <option value="Sea Materials">Sea Materials</option>
+              <option value="Sport  ">Sport  </option>
+              <option value="Sea  ">Sea  </option>
             </select>
           </div>
 

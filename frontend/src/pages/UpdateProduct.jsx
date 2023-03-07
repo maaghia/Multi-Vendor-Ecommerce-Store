@@ -178,13 +178,14 @@ export default function UpdateProduct() {
           <option value="Clothes">Clothes</option>
           <option value="Dishes">Dishes</option>
           <option value="Toys">Toys</option>
+          <option value="Games">Games</option>
           <option value="Electronics">Electronics</option>
           <option value="Cosmetics">Cosmetics</option>
           <option value="Accesories">Accesories</option>
           <option value="Books">Books</option>
           <option value="Home Furniture">Home Furniture</option>
-          <option value="Sport Materials">Sport Materials</option>
-          <option value="Sea Materials">Sea Materials</option>
+          <option value="Sport  ">Sport  </option>
+          <option value="Sea  ">Sea  </option>
         </select>
       </div>
 
