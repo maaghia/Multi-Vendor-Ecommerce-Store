@@ -5,7 +5,8 @@ import { Auth } from "../contexts/Auth";
 export default function MyProfile(){
 
     const { user } = useContext(Auth);
-    console.log("myprofile", user);
+    //this instead of line 7 
+    //console.log("myprofile", user);
 
     return(
         <div>

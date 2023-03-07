@@ -44,18 +44,15 @@ const signup = async (req, res) => {
 //update info (phone nbr, fullName, email, address)
 const updateUser = async (req, res) => {
   const id = req.user._id;
-
   try {
-    const user = await User.findById(id);
-    // Copy the values of the body received the User object. Returns the target object.
-    const updatedUser = Object.assign(user, req.body);
-    console.log("before",updatedUser)
-    await updatedUser.save();
-    console.log("after",updatedUser)
+    const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
+    console.log("updatedUser", updatedUser);
+    const token = generateToken(updatedUser._id);
     res.status(200).json({  
       ok: true,
       message: "User Info updated successfully!",
-      data: updatedUser,
+      //data: updatedUser, token
+      id:updatedUser._id, fullName:updatedUser.fullName, phoneNbr: updatedUser.phoneNbr, email: updatedUser.email, location: updatedUser.location, token,
     });
   } catch (error) {
     return res.status(400).json(error.message);

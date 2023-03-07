@@ -21,8 +21,8 @@ const AuthMiddleware = async (req, res, next) => {
     req.user = user;
     next();
   } catch (e) {
-    res.status(401).json({message: "You don't have permission to do this!"});
-  }
+    res.status(401).json({message: e});
+  } 
 };
 
 module.exports = AuthMiddleware;

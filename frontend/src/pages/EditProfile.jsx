@@ -1,15 +1,21 @@
 import React, {useContext, useState, useEffect} from "react";
 import { Auth } from "../contexts/Auth";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 export default function EditProfile(){
-    const { user } = useContext(Auth);
-    console.log(user)
+    
+    const { dispatch } = useContext(Auth);
+    //u need dispatch
+    const user = JSON.parse(localStorage.getItem("user"));
+    
+    //console.log(user)
     const [fullName, setFullName] = useState("");
     const [email, setEmail] = useState("");
     const [phoneNbr, setPhoneNbr] = useState("");
     const [location, setLocation] = useState("");
-
+    const navigate = useNavigate();
     const handleEditProfile = async (event) => {
         event.preventDefault();
 
@@ -32,7 +38,14 @@ export default function EditProfile(){
           });
           const json = await response.json()
       
-          console.log(json)    
+          console.log('update JSON',json)  
+       
+            dispatch({type: 'UPDATE_USER', payload: json})
+            localStorage.setItem("user", JSON.stringify(json));
+            //this way, try now
+          navigate('/myProfile');
+          
+          
       };
          
     return(
