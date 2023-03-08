@@ -5,20 +5,24 @@ import { NavLink } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
-  const { user } = useContext(Auth);
+  //const { user } = useContext(Auth);
   
-  //const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user"));
   const { logout } = useLogout();
 
   const handleLogout = () => {
     logout();
   };
 
-  /* const[loggedin, setLoggedin] = useState(true)
+  const[loggedin, setLoggedin] = useState(true)
   useEffect(() => {
-    if(user) setLoggedin(true)
-    if(!user) setLoggedin(false)
-  }, [user]); */
+    if(user) {
+      setLoggedin(true);
+    }
+    if(!user) {
+      setLoggedin(false);
+    }
+  }, [user]);
 
   //theme toggle
   const [theme, setTheme] = useState("dark");
@@ -124,7 +128,7 @@ export default function Navbar() {
           </div>
         </div>
 
-        {user && (
+        {loggedin && (
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">
